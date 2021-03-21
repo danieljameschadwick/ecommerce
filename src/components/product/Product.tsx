@@ -2,7 +2,9 @@ import { MOCK_PRODUCT } from "../../enumeration/MockValues";
 import ImageGallery from "react-image-gallery";
 import { formatCentesimal } from "../../util/formatting/currencyFormatter";
 import { Button } from "../util/buttons/Button";
- 
+import Dropdown from "react-dropdown";
+import { useState } from "react";
+
 type IProps = {
     id: number;
     name: string;
@@ -23,13 +25,23 @@ const images = [
     },
 ];
 
+const sizes = [
+    "S", "M", "L", "XL"
+];
+
 const Product = ({ id, name }: IProps) => {
     const showThumbnails = images.length > 1;
+    const [size, setSize] = useState<string|undefined>(undefined);
+
+    const addToCart = () => {
+        console.log('add to cart');
+        console.log(size);
+    };
 
     return (
         <div className={"container mb-4"}>
-            <div className={'flex flex-wrap md:flex-nowrap'}>
-                <div className={'w-full md:w-2/3 md:mr-5'}>
+            <div className={"flex flex-wrap md:flex-nowrap"}>
+                <div className={"w-full md:w-2/3 md:mr-5"}>
                     <ImageGallery 
                         additionalClass={"product-gallery"}
                         items={images} 
@@ -49,16 +61,11 @@ const Product = ({ id, name }: IProps) => {
                     </p>
 
                     <div className={"mb-4"}>
-                        <p>Size chart:</p>
+                        <p className={"mb-1"}>Size chart:</p>
 
-                        <select className={"w-full mb-4"}>
-                            <option value={"S"}>S</option>
-                            <option value={"M"}>M</option>
-                            <option value={"L"}>L</option>
-                            <option value={"XL"}>XL</option>
-                        </select>
+                        <Dropdown className={"w-full mb-2"} options={sizes} onChange={({value}) => setSize(value)} placeholder="Select an option" />
 
-                        <Button text={"Add to cart"} />
+                        <Button text={"Add to cart"} onClick={() => addToCart()} />
                     </div>
 
                     <p>

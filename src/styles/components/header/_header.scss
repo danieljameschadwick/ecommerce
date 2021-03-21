@@ -1,6 +1,6 @@
 .userbar
 {
-	@apply bg-theme-primary h-5 w-full flex dark:bg-black-darker;
+	@apply bg-theme-primarydark h-5 w-full flex;
 
 	.navbar-end
 	{
@@ -10,7 +10,7 @@
 
 .header
 {
-	@apply bg-theme-primary h-10 w-full mb-5 flex dark:bg-black-dark;
+	@apply bg-theme-primary dark:text-black-base h-10 w-full mb-5 flex;
 }
 
 .navbar
@@ -22,7 +22,7 @@
 
 	.navbar-brand
 	{
-		@apply flex-1 text-black-base mr-3 self-center text-lg font-medium dark:text-white-base;
+		@apply flex-1 text-black-base mr-3 self-center text-lg font-medium;
 
 		&:hover
 		{
@@ -32,7 +32,7 @@
 
 	.navbar-end
 	{
-		@apply mr-2 self-center flex dark:text-white-base;
+		@apply mr-2 text-black-base self-center flex;
 
 		a
 		{
