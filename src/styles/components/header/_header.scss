@@ -1,13 +1,26 @@
 .userbar
 {
-	@apply bg-theme-primary h-9 w-full mb-5 flex dark:bg-black-dark;
+	@apply bg-theme-primary h-5 w-full flex dark:bg-black-darker;
 
+	.navbar-end
+	{
+		@apply text-xs;
+	}
+}
+
+.header
+{
+	@apply bg-theme-primary h-10 w-full mb-5 flex dark:bg-black-dark;
+}
+
+.navbar
+{
 	.container
 	{
 		@apply flex;
 	}
 
-	.userbar-brand
+	.navbar-brand
 	{
 		@apply flex-1 text-black-base mr-3 self-center text-lg font-medium dark:text-white-base;
 
@@ -17,13 +30,18 @@
 		}
 	}
 
-	.userbar-end
+	.navbar-end
 	{
 		@apply mr-2 self-center flex dark:text-white-base;
 
 		a
 		{
 			@apply mr-3;
+
+			&:last-of-type
+			{
+				@apply mr-0;
+			}
 		}
 	}
 }

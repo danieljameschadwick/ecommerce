@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Footer from "./components/footer/Footer";
 import Header from './components/header/Header';
 import Landing from './pages/Landing';
 import ProductContainer from "./pages/ProductContainer";
@@ -21,6 +22,8 @@ const App = () => {
                     <Landing />
                 </Route>
             </Switch>
+
+            <Footer />
         </BrowserRouter>
     );
 };

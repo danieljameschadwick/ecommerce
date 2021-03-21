@@ -2,15 +2,11 @@ import { Link } from 'react-router-dom';
 
 export const Userbar = () => {
     return (
-        <div className={'userbar'}>
+        <div className={'userbar navbar'}>
             <div className={'container'}>
-                <div className={'userbar-brand link link--black-base'}>
-                    <Link to={{pathname: '/'}}>
-                        {process.env.REACT_APP_SITE_NAME}
-                    </Link>
-                </div>
+                <div className={'navbar-brand'}></div>
 
-                <div className={'userbar-end'}>
+                <div className={'navbar-end'}>
                     <Link to={{pathname: '/login'}}>
                         Login
                     </Link>
