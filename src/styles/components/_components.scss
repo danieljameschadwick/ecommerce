@@ -1,7 +1,8 @@
 @import 'header/_header';
 
 // components
-@import 'product/product_card';
+@import 'product/card';
+@import 'product/gallery';
 
 // 3rd party
 @import "~react-image-gallery/styles/scss/image-gallery.scss";

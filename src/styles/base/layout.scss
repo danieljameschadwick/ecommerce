@@ -1,7 +1,7 @@
 html,
 body
 {
-	@apply h-screen bg-white-base dark:bg-black-medium;
+	@apply h-screen bg-white-base overflow-x-hidden dark:bg-black-medium;
 }
 
 .root

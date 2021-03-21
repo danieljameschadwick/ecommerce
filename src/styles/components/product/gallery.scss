@@ -1,0 +1,32 @@
+.product-gallery
+{
+    .image-gallery-slide
+    {
+        .image-gallery-image
+        {
+            @apply object-cover w-full h-full;
+
+            user-select: none;
+        }
+    }
+
+    .image-gallery-thumbnails-container
+    {
+        @apply flex;
+    }
+
+    .image-gallery-thumbnail-inner
+    {
+        @apply w-full h-full max-h-400 flex;
+
+        .image-gallery-thumbnail-image
+        {
+            @apply object-cover w-full h-full;
+        }
+    }
+
+    .image-gallery-thumbnail
+    {
+        @apply w-1/3 sm:w-1/6 max-h-100;
+    }
+}
