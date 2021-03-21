@@ -1,6 +1,7 @@
 import { MOCK_PRODUCT } from "../../enumeration/MockValues";
 import ImageGallery from "react-image-gallery";
 import { formatCentesimal } from "../../util/formatting/currencyFormatter";
+import { Button } from "../util/buttons/Button";
  
 type IProps = {
     id: number;
@@ -47,15 +48,17 @@ const Product = ({ id, name }: IProps) => {
                         {formatCentesimal(MOCK_PRODUCT.PRICE)}
                     </p>
 
-                    <div className={"mb-2"}>
+                    <div className={"mb-4"}>
                         <p>Size chart:</p>
 
-                        <select>
+                        <select className={"w-full mb-4"}>
                             <option value={"S"}>S</option>
                             <option value={"M"}>M</option>
                             <option value={"L"}>L</option>
                             <option value={"XL"}>XL</option>
                         </select>
+
+                        <Button text={"Add to cart"} />
                     </div>
 
                     <p>
