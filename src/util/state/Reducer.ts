@@ -1,7 +1,8 @@
 import { Product } from "./Basket";
 
 export const ACTION = {
-    ADD_TO_CART: 'app.update.user',
+    ADD_TO_CART: 'basket.product.add',
+    SAVE_TO_STORAGE: 'basket.persist',
 };
 
 export const Reducer = (state, action) => {
@@ -18,6 +19,11 @@ export const Reducer = (state, action) => {
                 ...state,
                 basket
             };
+
+        case SAVE_TO_STORAGE:
+            console.log('persist');
+            
+            return state;
 
         default:
             return state;

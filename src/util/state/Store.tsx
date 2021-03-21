@@ -7,14 +7,17 @@ const initialState = {
     basket: new Basket(),
 };
 
-export const Context = createContext(initialState);
+export const StateContext = createContext(initialState);
+export const DispatchContext = createContext(initialState);
 
 export const Store = ({children}) => {
     const [state, dispatch] = useReducer(Reducer, initialState);
 
     return (
-        <Context.Provider value={[state, dispatch]}>
-            {children}
-        </Context.Provider>
+        <DispatchContext.Provider value={dispatch}>
+            <StateContext.Provider value={state}>
+                {children}
+            </StateContext.Provider>
+        </DispatchContext.Provider>
     );
 };
