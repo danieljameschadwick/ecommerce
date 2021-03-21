@@ -1,4 +1,5 @@
 export const MOCK_PRODUCT = {
+    ID: 1234,
     NAME: 'Mint Green Hoodie',
     PRICE: 1999,
     DESCRIPTION: 'Made from the coolest mats.',

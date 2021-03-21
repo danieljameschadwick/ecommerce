@@ -1,9 +1,11 @@
 import { MOCK_PRODUCT } from "../../enumeration/MockValues";
 import ImageGallery from "react-image-gallery";
-import { formatCentesimal } from "../../util/formatting/currencyFormatter";
+import { formatCentesimal } from "../../util/formatting/CurrencyFormatter";
 import { Button } from "../util/buttons/Button";
 import Dropdown from "react-dropdown";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ACTION } from "../../util/state/Reducer";
+import { Context } from "../../util/state/Store";
 
 type IProps = {
     id: number;
@@ -31,11 +33,21 @@ const sizes = [
 
 const Product = ({ id, name }: IProps) => {
     const showThumbnails = images.length > 1;
-    const [size, setSize] = useState<string|undefined>(undefined);
+    const [ state, dispatch ] = useContext(Context);
+    const [ size, setSize ] = useState<string|undefined>(undefined);
 
     const addToCart = () => {
         console.log('add to cart');
         console.log(size);
+
+        dispatch({
+            type: ACTION.ADD_TO_CART,
+            payload: {
+                id: MOCK_PRODUCT.ID,
+                size,
+                quantity: 1
+            },
+        })
     };
 
     return (
@@ -61,7 +73,7 @@ const Product = ({ id, name }: IProps) => {
                     </p>
 
                     <div className={"mb-4"}>
-                        <p className={"mb-1"}>Size chart:</p>
+                        <p className={"mb-1"}>Size:</p>
 
                         <Dropdown className={"w-full mb-2"} options={sizes} onChange={({value}) => setSize(value)} placeholder="Select an option" />
 
