@@ -3,11 +3,12 @@ import Footer from "./components/footer/Footer";
 import Header from './components/header/Header';
 import Landing from './pages/Landing';
 import ProductContainer from "./pages/ProductContainer";
+import { Provider } from "react-redux";
 import { Store } from "./util/state/Store";
 
 const App = () => {
     return (
-        <Store>
+        <Provider store={Store}>
             <BrowserRouter>
                 <Header />
 
@@ -27,7 +28,7 @@ const App = () => {
 
                 <Footer />
             </BrowserRouter>
-        </Store>
+        </Provider>
     );
 };
 

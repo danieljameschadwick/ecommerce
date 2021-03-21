@@ -1,11 +1,12 @@
-import { Product } from "./Basket";
+import { Product } from "./Product";
+import { Basket } from "./Basket";
+import { ACTION } from "./Action";
 
-export const ACTION = {
-    ADD_TO_CART: 'basket.product.add',
-    SAVE_TO_STORAGE: 'basket.persist',
+const initialState = {
+  basket: new Basket(), 
 };
 
-export const Reducer = (state, action) => {
+export const Reducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION.ADD_TO_CART:
             const { payload } = action;
@@ -15,17 +16,17 @@ export const Reducer = (state, action) => {
             const product = new Product(id, size, quantity);
             basket.addProduct(product);
 
-            return {
-                ...state,
-                basket
-            };
+            break;
 
-        case SAVE_TO_STORAGE:
+        case ACTION.SAVE_TO_STORAGE:
             console.log('persist');
             
-            return state;
-
-        default:
-            return state;
+            break;
     }
+
+  return state;
+};
+
+export const OldReducer = (state, action) => {
+    
 };

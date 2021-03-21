@@ -1,4 +1,4 @@
-import { Userbar } from "./Userbar";
+import Userbar from "./Userbar";
 import { Link } from "react-router-dom";
 
 const Header = () => {

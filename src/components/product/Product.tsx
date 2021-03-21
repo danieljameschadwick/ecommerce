@@ -3,9 +3,9 @@ import ImageGallery from "react-image-gallery";
 import { formatCentesimal } from "../../util/formatting/CurrencyFormatter";
 import { Button } from "../util/buttons/Button";
 import Dropdown from "react-dropdown";
-import { useContext, useState } from "react";
-import { ACTION } from "../../util/state/Reducer";
-import { DispatchContext } from "../../util/state/Store";
+import { useState } from "react";
+import { ACTION } from "../../util/state/Action";
+import { useDispatch } from "react-redux";
 
 type IProps = {
     id: number;
@@ -32,24 +32,19 @@ const sizes = [
 ];
 
 const Product = ({ id, name }: IProps) => {
-    const dispatch = useContext(DispatchContext);
+    const dispatch = useDispatch();
     const [ size, setSize ] = useState<string|undefined>(undefined);
-
-    
     const showThumbnails = images.length > 1;
-   
-    const addToCart = () => {
-        console.log('add to cart');
-        console.log(size);
 
+    const addToCart = () => {
         dispatch({
             type: ACTION.ADD_TO_CART,
             payload: {
-                id: MOCK_PRODUCT.ID,
-                size,
-                quantity: 1
+                id: 1234,
+                size: size,
+                quantity: 1,
             },
-        })
+        });
     };
 
     return (

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const Userbar = () => {
+const Userbar = () => {
     return (
         <div className={'userbar navbar'}>
             <div className={'container'}>
@@ -15,3 +15,5 @@ export const Userbar = () => {
         </div>
     );
 };
+
+export default Userbar;
