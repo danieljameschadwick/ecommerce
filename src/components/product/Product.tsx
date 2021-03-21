@@ -26,7 +26,7 @@ const Product = ({ id, name }: IProps) => {
     const showThumbnails = images.length > 1;
 
     return (
-        <div className={"container"}>
+        <div className={"container mb-4"}>
             <div className={'flex flex-wrap md:flex-nowrap'}>
                 <div className={'w-full md:w-2/3 md:mr-5'}>
                     <ImageGallery 
