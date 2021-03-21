@@ -1,0 +1,9 @@
+.button
+{
+    @apply bg-theme-primary w-full px-3 py-2 h-12 rounded-lg outline-none;
+
+    &.disabled
+    {
+        @apply bg-black-medium text-gray-medium cursor-not-allowed;
+    }
+}
