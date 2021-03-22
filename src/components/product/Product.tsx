@@ -1,11 +1,12 @@
 import { MOCK_PRODUCT } from "../../enumeration/MockValues";
 import ImageGallery from "react-image-gallery";
 import { formatCentesimal } from "../../util/formatting/CurrencyFormatter";
-import { Button } from "../util/buttons/Button";
-import Dropdown from "react-dropdown";
+import { SubmitButton } from "../util/buttons/SubmitButton";
 import { useState } from "react";
 import { ACTION } from "../../util/state/Action";
 import { useDispatch } from "react-redux";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
 type IProps = {
     id: number;
@@ -28,21 +29,63 @@ const images = [
 ];
 
 const sizes = [
-    "S", "M", "L", "XL"
+    {
+        label: "S",
+        value: {
+            id: 1,
+            type: "SIZE",
+            handle: "S",
+        },
+    },
+    {
+        label: "M",
+        value: {
+            id: 2,
+            type: "SIZE",
+            handle: "M",
+        },
+    },
+    {
+        label: "L",
+        value: {
+            id: 3,
+            type: "SIZE",
+            handle: "L",
+        },
+    },
+    {
+        label: "XL",
+        value: {
+            id: 4,
+            type: "SIZE",
+            handle: "XL",
+        },
+    },
 ];
 
-const Product = ({ id, name }: IProps) => {
+const ProductSchema = Yup.object().shape({
+   size: Yup.string()
+     .required('Required'),
+ });
+
+export const Product = ({ id, name }: IProps) => {
     const dispatch = useDispatch();
     const [ size, setSize ] = useState<string|undefined>(undefined);
     const showThumbnails = images.length > 1;
+
+    const updateSize = (value: AttributeDTO) => {
+        setSize(value);
+    };
 
     const addToCart = () => {
         dispatch({
             type: ACTION.ADD_TO_CART,
             payload: {
                 id: 1234,
-                size: size,
                 quantity: 1,
+                attributes: {
+                    size,
+                },
             },
         });
     };
@@ -72,9 +115,43 @@ const Product = ({ id, name }: IProps) => {
                     <div className={"mb-4"}>
                         <p className={"mb-1"}>Size:</p>
 
-                        <Dropdown className={"w-full mb-2"} options={sizes} onChange={({value}) => setSize(value)} placeholder="Select an option" />
+                        <Formik 
+                            initialValues={{
+                                size: "",
+                            }}
+                            validationSchema={ProductSchema}
+                            onSubmit={values => {
+                                // same shape as initial values
+                                console.log(values);
 
-                        <Button text={"Add to cart"} onClick={() => addToCart()} />
+                                addToCart();
+                            }}
+                        >
+                            {({ errors, touched }) => (
+                                <Form>
+                                    <select name="sizes" className={"w-full mb-2"} onChange={(event, value) => updateSize(JSON.parse(event.target.value))}>
+                                        <option value="" disabled defaultValue={true}>
+                                            Select your option
+                                        </option>
+
+                                        {sizes.map((option, index) =>
+                                            <option key={option.value.id} value={JSON.stringify(option.value)}>
+                                                {option.value.handle}
+                                            </option>
+                                        )}
+                                    </select>
+
+                                    {errors.sizes && touched.sizes ? (
+                                        <div>{errors.sizes}</div>
+                                    ) : null}
+
+                                    {/* <SubmitButton text={"Add to cart"} onClick((event) => updateSize(event.target.value)) /> */}
+                                    <button type="submit">
+                                        Add to cart
+                                    </button>
+                                </Form>
+                            )}
+                        </Formik>
                     </div>
 
                     <p>
@@ -85,5 +162,3 @@ const Product = ({ id, name }: IProps) => {
         </div>
     );
 };
-
-export default Product;

@@ -5,7 +5,7 @@ interface Products {
 }
 
 interface ProductSizes {
-    [size: string]: Product;
+    [sku: string]: Product;
 }
 
 export class Basket {
@@ -16,12 +16,13 @@ export class Basket {
     }
 
     addProduct(product: Product): void {
-        const existingProduct = this.getProduct(product.id, product.size);
-        const { id, size, quantity } = product;
+        const { id, quantity } = product;
+        const sku = product.getSku();
+        const existingProduct = this.getProduct(id, sku);
 
         if (existingProduct !== undefined) {
             existingProduct.add(quantity);
-            this.products[id][size] = existingProduct;
+            this.products[id][sku] = existingProduct;
 
             return;
         }
@@ -30,37 +31,38 @@ export class Basket {
             this.products[id] = [];
         }
 
-        this.products[id][size] = product;
+        this.products[id][sku] = product;
     }
 
-    getProduct(id: number, size: string): Product|undefined {
-        const products = this.products[id];
+    getProduct(id: number, sku: string): Product|undefined {
+        const productVariations = this.products[id];
 
-        if (products === undefined) {
+        if (productVariations === undefined) {
             return undefined;
         }
 
-        if (products[size] === undefined) {
+        if (productVariations[sku] === undefined) {
             return undefined;
         }
 
-        return products[size];
+        return productVariations[sku];
     }
     
     setProduct(product: Product): void {
-        const existingProduct = this.getProduct(product.id, product.size);
+        const sku = product.getSku();
+        const existingProduct = this.getProduct(product.id, sku);
 
         if (existingProduct !== undefined) {
             existingProduct.add(product.quantity);
-            this.products[product.id][product.size] = existingProduct;
+            this.products[product.id][sku] = existingProduct;
 
             return;
         }
 
-        this.products[product.id][product.size] = product;
+        this.products[product.id][sku] = product;
     }
 
-    hasProduct(id: number, size: string): boolean {
-        return this.getProduct(id, size) !== undefined;
+    hasProduct(id: number, sku: string): boolean {
+        return this.getProduct(id, sku) !== undefined;
     }
 };
