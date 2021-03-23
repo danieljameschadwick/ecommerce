@@ -16,6 +16,8 @@ export class Basket {
     }
 
     addProduct(product: Product): void {
+console.log('test');
+
         const { id, quantity } = product;
         const sku = product.getSku();
         const existingProduct = this.getProduct(id, sku);

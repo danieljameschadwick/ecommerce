@@ -1,3 +1,5 @@
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, REHYDRATE } from 'redux-persist';
 import { Product } from "./Product";
 import { Attribute, AttributeDTO } from "./Attribute";
 import { Basket } from "./Basket";
@@ -17,14 +19,20 @@ interface AttributeHash {
     [size: string]: AttributeDTO;
 }
 
-export const Reducer = (state = initialState, action) => {
+const BasketReducer = (state = initialState, action) => {
     switch (action.type) {
+        case REHYDRATE:
+            return {
+              ...state,
+              basket: new Basket(action.payload.basket.products),
+        };
+
         case ACTION.ADD_TO_CART:
             const { id, quantity, attributes }: AddToCartDTO = action.payload;
             const { basket } = state;
             const attributeDTOs: AttributeDTO[] = [];
 
-            for (const [key, attribute] of Object.entries(attributes)) {
+            for (const [attribute] of Object.entries(attributes)) {
                 attributeDTOs.push(
                     new Attribute(attribute.id, attribute.type, attribute.handle)
                 );
@@ -41,5 +49,12 @@ export const Reducer = (state = initialState, action) => {
             break;
     }
 
-  return state;
+    return state;
 };
+
+const persistConfig = {
+    key: 'basket',
+    storage: storage,
+};
+
+export default persistReducer(persistConfig, BasketReducer);
