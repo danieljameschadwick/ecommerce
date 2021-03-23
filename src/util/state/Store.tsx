@@ -3,4 +3,4 @@ import { Reducer } from "./Reducer";
 
 export const Store = createStore(Reducer);
 
-window.store = Store; // todo: debug
+window.store = Store; // todo: remove debug

@@ -1,7 +1,8 @@
-interface AttributeDTO {
+export interface AttributeDTO {
     id: number;
     type: string;
     handle: string;
+    name?: string;
 };
 
 export class Attribute implements AttributeDTO {
