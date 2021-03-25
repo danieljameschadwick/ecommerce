@@ -9,15 +9,13 @@ interface ProductSizes {
 }
 
 export class Basket {
-    products: Products;
+    products: Products[];
 
-    constructor(products: Products = []) {
+    constructor(products: Products[] = []) {
         this.products = products;
     }
 
     addProduct(product: Product): void {
-console.log('test');
-
         const { id, quantity } = product;
         const sku = product.getSku();
         const existingProduct = this.getProduct(id, sku);

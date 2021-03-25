@@ -1,9 +1,9 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from "redux-persist/integration/react";
 import Footer from "./components/footer/Footer";
-import Header from './components/header/Header';
-import Landing from './pages/Landing';
+import Header from "./components/header/Header";
+import Landing from "./pages/Landing";
 import { Persistor, Store } from "./util/state/Store";
 import ProductContainer from "./pages/ProductContainer";
 import BasketContainer from "./pages/BasketContainer";
