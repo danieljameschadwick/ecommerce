@@ -52,15 +52,6 @@ export const ProductForm = () => {
         const attributes = [];
         attributes["size"] = size;
 
-        console.log({
-            type: ACTION.ADD_TO_CART,
-            payload: {
-                id: 1234,
-                quantity: 1,
-                attributes,
-            },
-        });
-
         dispatch({
             type: ACTION.ADD_TO_CART,
             payload: {

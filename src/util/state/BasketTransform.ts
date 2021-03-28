@@ -6,10 +6,7 @@ interface BasketState {
 }
 
 const BasketTransform = createTransform(
-    // transform state on its way to being serialized and persisted.
     (inboundState: BasketState, key) => {
-        console.log(inboundState);
-
         const { basket } = inboundState;
 
         if (basket === undefined) {
@@ -18,20 +15,23 @@ const BasketTransform = createTransform(
             };
         }
 
-        console.log(basket);
+        const serializedProduct = [];
+
+        for (const keyMap in basket.products) {
+            const productMap = basket.products[keyMap]
+
+            for (const key in productMap) {
+                const product = productMap[key];
+
+                serializedProduct.push(product);
+            }
+        }
 
         return {
             ...inboundState,
-            basket: {
-                products: basket.products.map(product => {
-                    return {
-                        ...product
-                    }
-                })
-            }
+            basket: new Basket(serializedProduct),
         };
     },
-    // transform state being rehydrated
     (outboundState, key) => {
         console.log(outboundState);
 

@@ -21,9 +21,6 @@ interface AttributeHash {
 }
 
 export const BasketReducer = (state = initialState, action) => {
-    console.log(action.type);
-    console.log(state.basket);
-
     switch (action.type) {
         case REHYDRATE:
             const rehydrateProducts = action.payload?.basket?.products ?? [];
@@ -53,20 +50,7 @@ export const BasketReducer = (state = initialState, action) => {
                 ...state,
                 basket,
             };
-
-        case ACTION.SAVE_TO_STORAGE:
-            console.log("persist");
-            
-            break;
     }
 
     return state;
 };
-
-export const basketPersistConfig = {
-    key: "basket",
-    storage: storage,
-    transforms: [BasketTransform],
-};
-
-// export default persistReducer(basketPersistConfig, BasketReducer);
