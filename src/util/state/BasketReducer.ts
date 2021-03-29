@@ -25,6 +25,7 @@ export const BasketReducer = (state = initialState, action) => {
         case REHYDRATE:
             const rehydrateProducts = action.payload?.basket?.products ?? [];
 
+            console.log(action.payload);
             console.log(rehydrateProducts);
 
             return {

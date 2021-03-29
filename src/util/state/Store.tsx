@@ -12,12 +12,10 @@ const persistConfig = {
     storage: storage,
     transforms: [BasketTransform],
     // stateReconciler: autoMergeLevel1,
-    debug: true,
 };
 
 const Reducer = combineReducers({
     basket: BasketReducer,
-    // basket: persistReducer(basketPersistConfig, BasketReducer)
 });
 
 const persistedReducer = persistReducer(persistConfig, Reducer);

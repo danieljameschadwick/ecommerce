@@ -12,10 +12,16 @@ export class Basket {
     products: Products[];
 
     constructor(products: Products[] = []) {
-        this.products = products;
+        this.products = [];
+
+        products.forEach(product => {
+            this.addProduct(product);
+        });
     }
 
     addProduct(product: Product): void {
+console.log(product);
+
         const { id, quantity } = product;
         const sku = product.getSku();
         const existingProduct = this.getProduct(id, sku);
