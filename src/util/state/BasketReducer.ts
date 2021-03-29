@@ -1,11 +1,9 @@
-import storage from "redux-persist/lib/storage";
-import { persistReducer, REHYDRATE } from "redux-persist";
+import { REHYDRATE } from "redux-persist";
 import { Product } from "./Product";
 import { Attribute, AttributeDTO } from "./Attribute";
 import { Basket } from "./Basket";
 import { LocalBasket } from "./LocalBasket";
 import { ACTION } from "./Action";
-import BasketTransform from "./BasketTransform";
 
 const initialState = {
     basket: new Basket(), 
@@ -38,6 +36,8 @@ export const BasketReducer = (state = initialState, action) => {
                 }
             }
 
+            // todo: no unused vars on key
+            // eslint-disable-next-line
             for (const [key, productData] of Object.entries(localBasket.products)) {
                 let { id, quantity, attributes } = productData;
                 let product = new Product(id, quantity, attributes);
@@ -55,6 +55,8 @@ export const BasketReducer = (state = initialState, action) => {
             let { basket } = state;
             let attributeDTOs: AttributeDTO[] = [];
 
+            // todo: no unused vars on key
+            // eslint-disable-next-line
             for (const [key, attribute] of Object.entries(attributes)) {
                 attributeDTOs.push(
                     new Attribute(attribute.id, attribute.type, attribute.handle)
