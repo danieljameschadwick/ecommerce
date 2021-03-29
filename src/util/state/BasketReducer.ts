@@ -3,6 +3,7 @@ import { persistReducer, REHYDRATE } from "redux-persist";
 import { Product } from "./Product";
 import { Attribute, AttributeDTO } from "./Attribute";
 import { Basket } from "./Basket";
+import { LocalBasket } from "./LocalBasket";
 import { ACTION } from "./Action";
 import BasketTransform from "./BasketTransform";
 
@@ -18,25 +19,41 @@ interface AddToCartDTO {
 
 interface AttributeHash {
     [size: string]: AttributeDTO;
-}
+};
 
 export const BasketReducer = (state = initialState, action) => {
     switch (action.type) {
         case REHYDRATE:
-            const rehydrateProducts = action.payload?.basket?.products ?? [];
+            let localBasket: LocalBasket = action.payload?.basket;
+            let hydratedBasket = new Basket();
 
-            console.log(action.payload);
-            console.log(rehydrateProducts);
+            if (
+                undefined === localBasket
+                || !localBasket instanceof LocalBasket
+                || undefined === localBasket.products
+            ) {
+                return {
+                    ...state,
+                    basket: hydratedBasket,
+                }
+            }
+
+            for (const [key, productData] of Object.entries(localBasket.products)) {
+                let { id, quantity, attributes } = productData;
+                let product = new Product(id, quantity, attributes);
+
+                hydratedBasket.addProduct(product);
+            }
 
             return {
                 ...state,
-                basket: new Basket(rehydrateProducts),
+                basket: hydratedBasket,
             };
 
         case ACTION.ADD_TO_CART:
-            const { id, quantity, attributes }: AddToCartDTO = action.payload;
-            const { basket } = state;
-            const attributeDTOs: AttributeDTO[] = [];
+            let { id, quantity, attributes }: AddToCartDTO = action.payload;
+            let { basket } = state;
+            let attributeDTOs: AttributeDTO[] = [];
 
             for (const [key, attribute] of Object.entries(attributes)) {
                 attributeDTOs.push(

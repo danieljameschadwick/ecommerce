@@ -52,8 +52,6 @@ export const ProductForm = () => {
         const attributes = [];
         attributes["size"] = size;
 
-        console.log('add to cart');
-
         dispatch({
             type: ACTION.ADD_TO_CART,
             payload: {

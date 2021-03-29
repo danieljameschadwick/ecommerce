@@ -1,5 +1,6 @@
 import { createTransform } from "redux-persist";
 import { Basket } from "./Basket";
+import { LocalBasket } from "./LocalBasket";
 
 interface BasketState {
     basket: Basket;
@@ -9,9 +10,6 @@ const BasketTransform = createTransform(
     // transform state on its way to being serialized and persisted.
     (inboundState: BasketState, key) => {
         const { basket } = inboundState;
-
-        console.log('persisting state');
-        console.log(basket);
 
         if (basket === undefined) {
             return {
@@ -31,12 +29,10 @@ const BasketTransform = createTransform(
             }
         }
 
-        return new Basket(serializedProduct);
+        return new LocalBasket(serializedProduct);
     },
     // transform state being rehydrated
     (outboundState, key) => {
-        console.log(outboundState);
-
         return {
             ...outboundState
         };

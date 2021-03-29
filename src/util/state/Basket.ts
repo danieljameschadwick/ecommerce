@@ -1,4 +1,5 @@
 import { Product } from "./Product";
+import { LocalBasket } from "./LocalBasket";
 
 interface Products {
     [id: number]: ProductSizes;
@@ -12,16 +13,18 @@ export class Basket {
     products: Products[];
 
     constructor(products: Products[] = []) {
+        this.products = products;
+    }
+
+    static createFromStorage(localBasket: LocalBasket) {
         this.products = [];
 
-        products.forEach(product => {
-            this.addProduct(product);
-        });
+        for (const key in localBasket.products) {
+            this.addProduct(localBasket.products[key]);
+        }
     }
 
     addProduct(product: Product): void {
-console.log(product);
-
         const { id, quantity } = product;
         const sku = product.getSku();
         const existingProduct = this.getProduct(id, sku);
