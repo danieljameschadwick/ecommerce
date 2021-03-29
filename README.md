@@ -4,7 +4,9 @@ Written solely in ReactJS, TypeScript accompanied by Tailwind.
 
 ## Todo
 
-- Backend
+- Backend (Products, Authentication, Checkout)
+- Rename core files (Basket naming schema)
+- Core library (currentFormatter)
 
 ## Startup
 

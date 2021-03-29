@@ -29,7 +29,7 @@ export const Basket: React.FC = () => {
 
             {products.map(product => {
                 return (
-                    <div className={"text-white-base"}>
+                    <div key={product.getSku()} className={"text-white-base"}>
                         {product.getSku()}, {product.quantity}
                     </div>
                 );
