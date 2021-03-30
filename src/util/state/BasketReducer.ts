@@ -66,8 +66,6 @@ export const BasketReducer = (state = initialState, action) => {
             const product = new Product(id, quantity, attributeDTOs);
             basket.addProduct(product);
 
-console.log(basket);
-
             return {
                 ...state,
                 basket,
