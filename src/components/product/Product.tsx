@@ -5,7 +5,6 @@ import { ProductForm } from "./ProductForm";
 
 type IProps = {
     id: number;
-    name: string;
 };
 
 const images = [
@@ -23,7 +22,7 @@ const images = [
     },
 ];
 
-export const Product = ({ id, name }: IProps) => {
+export const Product = ({ id }: IProps) => {
     const showThumbnails = images.length > 1;
 
     return (
