@@ -25,8 +25,6 @@ export const BasketReducer = (state = initialState, action) => {
             let localBasket: LocalBasket = action.payload?.basket;
             let hydratedBasket = new Basket();
 
-console.log('rehydrate');
-
             if (
                 undefined === localBasket
                 || !localBasket instanceof LocalBasket
