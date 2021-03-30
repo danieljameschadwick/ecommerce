@@ -25,6 +25,8 @@ export const BasketReducer = (state = initialState, action) => {
             let localBasket: LocalBasket = action.payload?.basket;
             let hydratedBasket = new Basket();
 
+console.log('rehydrate');
+
             if (
                 undefined === localBasket
                 || !localBasket instanceof LocalBasket
@@ -65,6 +67,8 @@ export const BasketReducer = (state = initialState, action) => {
 
             const product = new Product(id, quantity, attributeDTOs);
             basket.addProduct(product);
+
+console.log(basket);
 
             return {
                 ...state,

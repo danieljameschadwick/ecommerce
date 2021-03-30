@@ -7,22 +7,22 @@ export default class SiteDocument extends Document {
         const styleTags = sheet.getStyleElement();
 
         return (
-          <html>
-              <Head>
-                  <meta charSet="utf-8" />
-                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            <html>
+                <Head>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
-                  {styleTags}
-              </Head>
+                    {styleTags}
+                </Head>
 
-              <body>
-                  <div className="root">
-                  {main}
-                  </div>
+                <body>
+                    <div className="root">
+                        {main}
+                    </div>
 
-                  <NextScript />
-              </body>
-          </html>
+                    <NextScript />
+                </body>
+            </html>
         )
     }
 };

@@ -10,7 +10,8 @@ const Header = () => {
                 <div className={"container"}>
                     <div className={"navbar-brand link link--black-base"}>
                         <Link href={"/"}>
-                            <a>{process.env.REACT_APP_SITE_NAME}</a>
+                            {/** need to figure out dotenv and SSR */}
+                            <a>ecommerce</a>
                         </Link>
                     </div>
 

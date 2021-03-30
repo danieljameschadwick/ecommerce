@@ -1,6 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { Persistor, Store } from "../../util/state/Store";
 import Header from "../header/Header";
 
 const name = "[Your Name]";
