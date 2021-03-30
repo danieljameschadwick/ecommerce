@@ -11,16 +11,16 @@ class BaseDocument extends Document {
 
     render() {
         return (
-          <Html lang="en" className="dark">
-              <Head />
+            <Html lang="en" className="dark">
+                <Head />
 
-              <body>
-                <Main />
+                <body>
+                    <Main />
 
-                <NextScript />
-              </body>
-          </Html>
-        )
+                    <NextScript />
+                </body>
+            </Html>
+        );
     }
 }
 

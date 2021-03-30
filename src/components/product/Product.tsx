@@ -5,7 +5,6 @@ import { ProductForm } from "./ProductForm";
 
 type IProps = {
     id: number;
-    name: string;
 };
 
 const images = [

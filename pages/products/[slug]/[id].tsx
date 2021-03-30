@@ -1,11 +1,10 @@
 import Head from "next/head";
-import Link from "next/link";
 import Layout, { siteTitle } from "../../../src/components/layout/Layout";
 import { Product } from "../../../src/components/product/Product";
 
-const ProductPage = ({slug, id}) => {
+const ProductPage = ({id}) => {
     return (
-        <Layout home>
+        <Layout>
             <Head>
                 <title>{siteTitle}</title>
             </Head>

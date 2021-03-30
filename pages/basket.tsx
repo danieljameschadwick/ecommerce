@@ -5,7 +5,7 @@ import { Basket } from "../src/components/basket/Basket";
 
 const BasketPage: React.FC = () => {
     return (
-         <Layout home>
+         <Layout>
             <Head>
                 <title>{siteTitle}</title>
             </Head>
