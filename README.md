@@ -6,6 +6,7 @@ Written solely in ReactJS, TypeScript accompanied by Tailwind.
 
 - Backend (Products, Authentication, Checkout)
 - Rename core files (Basket naming schema)
+- Rethink hashed array for Products (keep having to normalise and loop through)
 - Core library (currentFormatter)
 
 ## Startup
