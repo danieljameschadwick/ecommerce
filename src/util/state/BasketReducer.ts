@@ -39,8 +39,8 @@ export const BasketReducer = (state = initialState, action) => {
             // todo: no unused vars on key
             // eslint-disable-next-line
             for (const [key, productData] of Object.entries(localBasket.products)) {
-                let { id, quantity, attributes } = productData;
-                let product = new Product(id, quantity, attributes);
+                let { id, price, quantity, attributes } = productData;
+                let product = new Product(id, price, quantity, attributes);
 
                 hydratedBasket.addProduct(product);
             }
@@ -51,7 +51,7 @@ export const BasketReducer = (state = initialState, action) => {
             };
 
         case ACTION.ADD_TO_CART:
-            let { id, quantity, attributes }: AddToCartDTO = action.payload;
+            let { id, price, quantity, attributes }: AddToCartDTO = action.payload;
             let { basket } = state;
             let attributeDTOs: AttributeDTO[] = [];
 
@@ -63,7 +63,7 @@ export const BasketReducer = (state = initialState, action) => {
                 );
             }
 
-            const product = new Product(id, quantity, attributeDTOs);
+            const product = new Product(id, price, quantity, attributeDTOs);
             basket.addProduct(product);
 
             return {

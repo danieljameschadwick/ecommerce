@@ -1,4 +1,5 @@
 import { MOCK_PRODUCT } from "../../enumeration/MockValues";
+import { formatCurrency } from "../../util/formatting/CurrencyFormatter";
 
 const ProductCard = () => {
     return (
@@ -6,16 +7,16 @@ const ProductCard = () => {
             <div className="relative overflow-hidden">
                 <div>
                     <a href={MOCK_PRODUCT.URL}>
-                        <picture className={'w-full h-full max-h-400 flex'}>
+                        <picture className={"w-full h-full max-h-400 flex"}>
                             <source srcSet={MOCK_PRODUCT.IMAGE_PATH}
                                 media={"(min-width: 800px)"} />
-                            <img className={'object-cover'} src={MOCK_PRODUCT.IMAGE_PATH} alt={MOCK_PRODUCT.IMAGE_ALT_TEXT} />
+                            <img className={"object-cover"} src={MOCK_PRODUCT.IMAGE_PATH} alt={MOCK_PRODUCT.IMAGE_ALT_TEXT} />
                         </picture>
                     </a>
                 </div>
 
                 <div className={"absolute bottom-0 mb-2 ml-3 px-2 py-1 rounded text-sm bg-black-dark text-white-base"}>
-                    $16.80
+                    {formatCurrency(MOCK_PRODUCT.PRICE)}
                 </div>
             </div>
 

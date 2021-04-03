@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
 import { Basket as PersistedBasket } from "../../util/state/Basket";
+import { BasketItem } from "./BasketItem";
 
 export const Basket: React.FC = () => {
     const basket: PersistedBasket = useSelector(state => state.basket.basket);
 
     if (undefined === basket) {
         return (
-            <div>No basket???</div>
+            <div>
+                No basket?
+            </div>
         );
     }
 
@@ -25,15 +28,20 @@ export const Basket: React.FC = () => {
 
     return (
         <div>
-            <h1>Basket</h1>
+            <h1 className={"mb-2"}>
+                Basket
+            </h1>
 
-            {products.map(product => {
-                return (
-                    <div key={product.getSku()} className={"text-white-base"}>
-                        {product.getSku()}, {product.quantity}
-                    </div>
-                );
-            })}
+            <div className={"flex flex-col"}>
+                {products.map(product => {
+                    return (
+                        <BasketItem 
+                            key={product.getSku()}
+                            product={product}
+                        />
+                    );
+                })}
+            </div>
         </div>
     )
 };

@@ -2,16 +2,19 @@ import { Attribute } from './Attribute';
 
 export class Product {
     id: number;
+    price: number;
     quantity: number;
     attributes: Attribute[];
 
-    constructor(id: number, quantity: number, attributes: Attribute[] = []) {
+    constructor(id: number, price: number, quantity: number, attributes: Attribute[] = []) {
         this.id = id;
+        this.price = price;
         this.quantity = quantity;
         this.attributes = attributes;
     }
 
-    add(quantity: number): void {
+    add(quantity: number): void 
+    {
         this.quantity += quantity;
     }
 
@@ -22,5 +25,15 @@ export class Product {
         }).toString().slice(0, -1);
 
         return `${this.id}-${sku}`;
+    }
+
+    getPrice(): number
+    {
+        return this.price;
+    }
+
+    getQuantity(): number
+    {
+        return this.quantity;
     }
 };

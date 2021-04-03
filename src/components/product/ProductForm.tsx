@@ -56,6 +56,7 @@ export const ProductForm = () => {
             type: ACTION.ADD_TO_CART,
             payload: {
                 id: 1234,
+                price: 19.99,
                 quantity: 1,
                 attributes,
             },
