@@ -21,7 +21,7 @@ export class Product {
     getSku(): string
     {
         const sku = this.attributes.map((attribute) => {
-            return `${attribute.handle}-`;
+            return `${attribute.value}-`;
         }).toString().slice(0, -1);
 
         return `${this.id}-${sku}`;
@@ -35,5 +35,10 @@ export class Product {
     getQuantity(): number
     {
         return this.quantity;
+    }
+
+    getAttributes(): Attribute[]
+    {
+        return this.attributes;
     }
 };

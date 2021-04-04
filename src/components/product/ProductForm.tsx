@@ -10,32 +10,36 @@ const sizes = [
         label: "S",
         value: {
             id: 1,
-            type: "SIZE",
-            handle: "S",
+            name: "Size",
+            handle: "SIZE",
+            value: "S",
         },
     },
     {
         label: "M",
         value: {
             id: 2,
-            type: "SIZE",
-            handle: "M",
+            name: "Size",
+            handle: "SIZE",
+            value: "M",
         },
     },
     {
         label: "L",
         value: {
             id: 3,
-            type: "SIZE",
-            handle: "L",
+            name: "Size",
+            handle: "SIZE",
+            value: "L",
         },
     },
     {
         label: "XL",
         value: {
             id: 4,
-            type: "SIZE",
-            handle: "XL",
+            name: "Size",
+            handle: "SIZE",
+            value: "XL",
         },
     },
 ];
@@ -95,7 +99,7 @@ export const ProductForm = () => {
 
                         {sizes.map((option, index) =>
                             <option key={option.value.id} value={JSON.stringify(option.value)}>
-                                {option.value.handle}
+                                {option.value.value}
                             </option>
                         )}
                     </select>

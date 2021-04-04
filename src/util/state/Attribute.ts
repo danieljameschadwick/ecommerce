@@ -1,28 +1,28 @@
 export interface AttributeDTO {
     id: number;
-    type: string;
     handle: string;
+    value: string;
     name?: string;
 };
 
 export class Attribute implements AttributeDTO {
     id: number;
-    type: string;
     handle: string;
+    value: string;
     name?: string;
 
-    constructor(id: number, type: string, handle: string, name?: string) {
+    constructor(id: number, handle: string, value: string, name?: string) {
         this.id = id;
-        this.type = type;
         this.handle = handle;
+        this.value = value;
         this.name = name;
     }
 
     static createFromData(data: AttributeDTO): Attribute {
         return new Attribute(
             data.id,
-            data.type,
             data.handle,
+            data.value,
             data.name,
         );
     }
