@@ -58,14 +58,10 @@ export const BasketReducer = (state = initialState, action) => {
             // todo: no unused vars on key
             // eslint-disable-next-line
             for (const [key, attribute] of Object.entries(attributes)) {
-                console.log(attribute);
-
                 attributeDTOs.push(
                     new Attribute(attribute.id, attribute.handle, attribute.value, attribute.name)
                 );
             }
-
-            console.log(attributeDTOs);
 
             const product = new Product(id, price, quantity, attributeDTOs);
             basket.addProduct(product);

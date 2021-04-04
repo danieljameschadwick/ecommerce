@@ -9,8 +9,8 @@ interface IProps {
 export const BasketItem: React.FC = ({product}: IProps) => {
     
     return (
-        <div className={"w-full flex flex-row max-h-100 sm:max-h-200 text-white-base"}>
-            <div className={"max-w-100 sm:max-w-200 mr-3"}>
+        <div className={"w-full flex flex-row text-white-base mb-3"}>
+            <div className={"max-w-100 sm:max-w-200 max-h-100 sm:max-h-200 mr-3"}>
                 <picture className={"w-full h-full flex"}>
                     <source
                         srcSet={MOCK_PRODUCT.IMAGE_PATH}
@@ -24,7 +24,7 @@ export const BasketItem: React.FC = ({product}: IProps) => {
                 </picture>
             </div>
 
-            <div className={"flex-1 flex flex-col sm:flex-row"}>
+            <div className={"flex-1 flex flex-col sm:flex-row relative"}>
                 <div className={"w-full sm:w-1/2 flex flex-col"}>
                     <h3 className={"w-full mb-1"}>
                         {MOCK_PRODUCT.NAME}
@@ -71,7 +71,7 @@ export const BasketItem: React.FC = ({product}: IProps) => {
                     </div>
                 </div>
 
-                <div className={"w-full sm:w-1/4 text-left sm:text-right"}>
+                <div className={"sm:w-1/4 text-left sm:text-right absolute top-0 right-0 sm:relative"}>
                     Remove
                 </div>
             </div>
