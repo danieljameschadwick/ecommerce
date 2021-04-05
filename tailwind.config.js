@@ -1,7 +1,10 @@
 module.exports = {
     darkMode: 'class',
     important: true,
-    purge: [],
+    purge: [
+        './pages/**/*.{tsx,ts}',
+        './src/**/*.{tsx,ts}'
+    ],
     theme: {
         extend: {
             borderRadius: {
