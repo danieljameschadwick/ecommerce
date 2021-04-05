@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Basket as PersistedBasket } from "../../util/state/Basket";
 import { BasketItem } from "./BasketItem";
+import { BasketSummary } from "./BasketSummary";
 
 export const Basket: React.FC = () => {
     const basket: PersistedBasket = useSelector(state => state.basket.basket);
@@ -32,15 +33,22 @@ export const Basket: React.FC = () => {
                 Basket
             </h1>
 
-            <div className={"flex flex-col"}>
-                {products.map(product => {
-                    return (
-                        <BasketItem 
-                            key={product.getSku()}
-                            product={product}
-                        />
-                    );
-                })}
+            <div className={"flex"}>
+                <div className={"flex flex-col flex-1"}>
+                    {products.map(product => {
+                        return (
+                            <BasketItem 
+                                key={product.getSku()}
+                                product={product}
+                            />
+                        );
+                    })}
+                </div>
+
+                <BasketSummary
+                    basket={basket}
+                    className={"ml-5"}
+                />
             </div>
         </div>
     )

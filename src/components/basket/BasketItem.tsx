@@ -7,7 +7,6 @@ interface IProps {
 };
 
 export const BasketItem: React.FC = ({product}: IProps) => {
-    
     return (
         <div className={"w-full flex flex-row text-white-base mb-3"}>
             <div className={"max-w-100 sm:max-w-200 max-h-100 sm:max-h-200 mr-3"}>

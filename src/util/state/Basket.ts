@@ -74,4 +74,9 @@ export class Basket {
     hasProduct(id: number, sku: string): boolean {
         return this.getProduct(id, sku) !== undefined;
     }
+
+    getTotal(): number
+    {
+        return 123.00;
+    }
 };
