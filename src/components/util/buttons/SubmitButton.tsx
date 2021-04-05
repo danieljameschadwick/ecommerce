@@ -2,12 +2,12 @@ import { Button } from './Button';
 
 type IProps = {
     text: string;
-    className?: string;
+    additionalClassName?: string;
     onClick?: () => void;
 };
 
-export const SubmitButton = ({text, className, onClick}: IProps) => {
+export const SubmitButton = ({text, additionalClassName, onClick}: IProps) => {
     return (
-        <Button text={text} onClick={onClick} className={className} type={"submit"} />
+        <Button text={text} onClick={onClick} additionalClassName={additionalClassName} type={"submit"} />
     )
 };

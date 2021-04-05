@@ -29,12 +29,12 @@ export const Basket: React.FC = () => {
 
     return (
         <div>
-            <h1 className={"mb-2"}>
-                Basket
-            </h1>
-
-            <div className={"flex"}>
+            <div className={"flex items-start"}>
                 <div className={"flex flex-col flex-1"}>
+                    <h1 className={"mb-3"}>
+                        Basket
+                    </h1>
+                    
                     {products.map(product => {
                         return (
                             <BasketItem 
@@ -45,10 +45,7 @@ export const Basket: React.FC = () => {
                     })}
                 </div>
 
-                <BasketSummary
-                    basket={basket}
-                    className={"ml-5"}
-                />
+                <BasketSummary basket={basket} additionalClassName={'w-300'} />
             </div>
         </div>
     )

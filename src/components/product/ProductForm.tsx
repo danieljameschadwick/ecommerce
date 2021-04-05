@@ -89,7 +89,7 @@ export const ProductForm = () => {
 
                     <select
                         name="size" 
-                        className={"w-full mb-2"}
+                        className={"w-full mb-3"}
                         onChange={handleChange}
                         defaultValue=""
                     >
@@ -99,7 +99,7 @@ export const ProductForm = () => {
 
                         {sizes.map((option, index) =>
                             <option key={option.value.id} value={JSON.stringify(option.value)}>
-                                {option.value.value}
+                                {option.label}
                             </option>
                         )}
                     </select>

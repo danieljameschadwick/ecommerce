@@ -1,6 +1,6 @@
 import { MOCK_PRODUCT } from "../../enumeration/MockValues";
 import ImageGallery from "react-image-gallery";
-import { formatCentesimal } from "../../util/formatting/CurrencyFormatter";
+import { formatCurrency } from "../../util/formatting/CurrencyFormatter";
 import { ProductForm } from "./ProductForm";
 
 type IProps = {
@@ -44,7 +44,7 @@ export const Product = ({ id }: IProps) => {
                     <h1>{MOCK_PRODUCT.NAME}</h1>
 
                     <p className={"mb-2"}>
-                        {formatCentesimal(MOCK_PRODUCT.PRICE)}
+                        {formatCurrency(MOCK_PRODUCT.PRICE)}
                     </p>
 
                     <div className={"mb-4"}>

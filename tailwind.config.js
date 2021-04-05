@@ -51,6 +51,9 @@ module.exports = {
                 300: '300px',
                 400: '400px',
             },
+            width: {
+                300: '300px',
+            },
             screens: {
                 xs: '420px',
                 lg: '1100px',

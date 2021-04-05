@@ -1,13 +1,13 @@
 type IProps = {
     text: string;
-    className?: string;
+    additionalClassName?: string;
     onClick?: () => void;
     type?: string;
 };
 
-export const Button = ({text, className, onClick, type}: IProps) => {
+export const Button = ({text, additionalClassName, onClick, type}: IProps) => {
     return (
-        <button onClick={onClick} className={`button ${className ?? ''}`} type={type !== undefined ? type : ''}>
+        <button onClick={onClick} className={`button ${additionalClassName ?? ''}`} type={type !== undefined ? type : ''}>
             {text}
         </button>
     )
