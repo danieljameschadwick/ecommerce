@@ -37,12 +37,12 @@ export const BasketSummary: React.FC = ({basket, additionalClassName}: IProps) =
 
             <hr className={"mb-3"} />
 
-            <div className={"flex flex-col"}>
+            <div className={"flex flex-col mb-4"}>
                 <span className={"mb-2"}>
                     <label className={"inline-block font-semibold"}>Sub Total:</label> {formatCurrency(basket.getTotal())}
                 </span>
 
-                <div className={"mb-3"}>
+                <div className={"mb-4"}>
                     <label className={"mb-1 inline-block font-semibold"}>Delivery:</label>
 
                     <select
@@ -59,6 +59,12 @@ export const BasketSummary: React.FC = ({basket, additionalClassName}: IProps) =
                 </div>
 
                 <SubmitButton text={"Checkout"} />
+            </div>
+
+            <div className={"flex justify-center space-x-2"}>
+                <img className={"w-10 h-6"} src={"www/images/payment/visa.png"} />
+                <img className={"w-10 h-6"} src={"www/images/payment/apple_pay.png"} />
+                <img className={"w-10 h-6"} src={"www/images/payment/credit.png"} />
             </div>
         </div>
     );
