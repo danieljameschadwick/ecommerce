@@ -29,8 +29,8 @@ export const Basket: React.FC = () => {
 
     return (
         <div>
-            <div className={"flex items-start"}>
-                <div className={"flex flex-col flex-1"}>
+            <div className={"basket--container"}>
+                <div className={"basket"}>
                     <h1 className={"mb-3"}>
                         Basket
                     </h1>
@@ -45,7 +45,9 @@ export const Basket: React.FC = () => {
                     })}
                 </div>
 
-                <BasketSummary basket={basket} additionalClassName={'w-300'} />
+                <div className={"summary--container"}>
+                    <BasketSummary basket={basket} />
+                </div>
             </div>
         </div>
     )

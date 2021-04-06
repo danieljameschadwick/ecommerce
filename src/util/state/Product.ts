@@ -37,6 +37,11 @@ export class Product {
         return this.quantity;
     }
 
+    getLinePrice(): number
+    {
+        return this.getQuantity() * this.getPrice();
+    }
+
     getAttributes(): Attribute[]
     {
         return this.attributes;

@@ -1,5 +1,6 @@
 export const ACTION = {
     ADD_TO_CART: 'basket.product.add',
+    UPDATE_DELIVERY: 'basket.delivery.update',
 };
 
 export const addArticle = (payload) => {

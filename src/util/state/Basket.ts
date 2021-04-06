@@ -1,22 +1,32 @@
 import { Product } from "./Product";
 import { LocalBasket } from "./LocalBasket";
+import { Delivery } from "./Delivery";
 
 interface Products {
     [id: number]: ProductSizes;
-}
+};
 
 interface ProductSizes {
     [sku: string]: Product;
-}
+};
 
 export class Basket {
+    subTotal: number;
+    delivery?: Delivery;
+    total: number;
     products: Products[];
 
     constructor(products: Products[] = []) {
+        this.subTotal = 0;
+        this.delivery = undefined;
+        this.total = 0;
         this.products = products;
     }
 
     static createFromStorage(localBasket: LocalBasket) {
+        this.subTotal = 0;
+        this.delivery = undefined;
+        this.total = 0;
         this.products = [];
 
         for (const key in localBasket.products) {
@@ -30,6 +40,7 @@ export class Basket {
         const existingProduct = this.getProduct(id, sku);
 
         if (existingProduct !== undefined) {
+            this.subTotal += product.getLinePrice();
             existingProduct.add(quantity);
             this.products[id][sku] = existingProduct;
 
@@ -41,6 +52,7 @@ export class Basket {
         }
 
         this.products[id][sku] = product;
+        this.subTotal += product.getLinePrice();
     }
 
     getProduct(id: number, sku: string): Product|undefined {
@@ -75,8 +87,22 @@ export class Basket {
         return this.getProduct(id, sku) !== undefined;
     }
 
+    getSubTotal(): number
+    {
+        return this.subTotal;
+    }
+
+    updateDelivery(delivery: AttributeDTO): void {
+        this.delivery = new Delivery(delivery.handle, delivery.value);
+    }
+
+    getDeliveryTotal(): number
+    {
+        return this.delivery?.getTotal() ?? 0;
+    }
+
     getTotal(): number
     {
-        return 123.00;
+        return this.getSubTotal() + this.getDeliveryTotal();
     }
 };

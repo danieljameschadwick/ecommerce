@@ -1,0 +1,14 @@
+.basket--container
+{
+    @apply grid grid-cols-5 gap-x-10 gap-y-4;
+}
+
+.basket
+{
+    @apply col-span-3;
+
+    @media screen and (max-width: 952px)
+    {
+        @apply col-span-5;
+    }
+}

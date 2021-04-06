@@ -1,0 +1,14 @@
+.summary--container
+{
+    @apply col-span-2;
+
+    @media screen and (max-width: 952px)
+    {
+        @apply col-span-5;
+    }
+}
+
+.basket--summary
+{
+    @apply bg-black-darker text-white-base p-4 rounded-xl;
+}

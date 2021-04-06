@@ -45,6 +45,13 @@ export const BasketReducer = (state = initialState, action) => {
                 hydratedBasket.addProduct(product);
             }
 
+            if (
+                undefined !== localBasket.delivery
+            ) {
+
+                hydratedBasket.updateDelivery(localBasket.delivery);
+            }
+
             return {
                 ...state,
                 basket: hydratedBasket,
@@ -69,6 +76,17 @@ export const BasketReducer = (state = initialState, action) => {
             return {
                 ...state,
                 basket,
+            };
+        
+        case ACTION.UPDATE_DELIVERY:
+            let updatedBasket = state.basket;
+
+            let delivery: AttributeDTO = action.payload;
+            updatedBasket.updateDelivery(delivery);
+
+            return {
+                ...state,
+                basket: updatedBasket
             };
     }
 

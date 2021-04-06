@@ -10,7 +10,6 @@ const BasketTransform = createTransform(
     // transform state on its way to being serialized and persisted.
     (inboundState: BasketState, key) => {
         const { basket } = inboundState;
-
         if (basket === undefined) {
             return {
                 ...inboundState
@@ -29,7 +28,7 @@ const BasketTransform = createTransform(
             }
         }
 
-        return new LocalBasket(serializedProduct);
+        return new LocalBasket(serializedProduct, basket.delivery);
     },
     // transform state being rehydrated
     (outboundState, key) => {

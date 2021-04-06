@@ -1,9 +1,12 @@
-@import 'header/_header';
-@import 'footer/_footer';
+@import "header/_header";
+@import "footer/_footer";
 
 // components
-@import 'product/card';
-@import 'product/gallery';
+@import "product/card";
+@import "product/gallery";
+
+@import "basket/basket";
+@import "basket/summary";
 
 // 3rd party
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
