@@ -18,7 +18,7 @@ const delivery = [
         value: {
             id: 1,
             name: "Standard Delivery",
-            handle: "DELIVERY",
+            handle: "STANDARD_DELIVERY",
             value: 3,
         },
     },
@@ -27,7 +27,7 @@ const delivery = [
         value: {
             id: 2,
             name: "Next-day Delivery",
-            handle: "DELIVERY",
+            handle: "NEXT_DAY",
             value: 6.99,
         },
     }
@@ -38,18 +38,18 @@ const BasketSummarySchema = Yup.object().shape({
         .required('Required'),
 });
 
-const submit = () => {
-    // location.href = "/checkout";
-};
-
 export const BasketSummary: React.FC = ({basket, additionalClassName}: IProps) => {
     const dispatch = useDispatch();
 
-    const updateDelivery = (delivery: AttributeDTO) => {
+    const updateDelivery = (delivery: AttributeDTO): void => {
         dispatch({
             type: ACTION.UPDATE_DELIVERY,
             payload: delivery,
         });
+    };
+
+    const submit = (): void => {
+        location.href = "/checkout";
     };
     
     return (
