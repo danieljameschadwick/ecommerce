@@ -1,7 +1,6 @@
 import { createStore, combineReducers } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { createWrapper } from 'next-redux-wrapper';
+import { createWrapper } from "next-redux-wrapper";
 import { BasketReducer } from "./BasketReducer";
 import BasketTransform from "./BasketTransform";
 
@@ -15,25 +14,24 @@ const Reducer = combineReducers({
     basket: BasketReducer,
 });
 
-const makeStore = ({ isServer }) => {
-    if (isServer) {
+const Store = () => {
+    if (typeof window === 'undefined') {
         return createStore(Reducer);
     }
 
     const { persistStore, persistReducer } = require("redux-persist");
     const persistedReducer = persistReducer(persistConfig, Reducer);
 
-    const store = createStore(
-        persistedReducer,
-    );
+    const store = createStore(persistedReducer);
 
     store.__persistor = persistStore(store);
 
     return store;
 };
 
-const Wrapper = createWrapper(makeStore);
+const Wrapper = createWrapper(Store);
 
 export {
     Wrapper,
+    Store,
 };

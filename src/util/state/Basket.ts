@@ -71,14 +71,6 @@ export class Basket {
     
     setProduct(product: Product): void {
         const sku = product.getSku();
-        const existingProduct = this.getProduct(product.id, sku);
-
-        if (existingProduct !== undefined) {
-            existingProduct.add(product.quantity);
-            this.products[product.id][sku] = existingProduct;
-
-            return;
-        }
 
         this.products[product.id][sku] = product;
     }
@@ -87,12 +79,38 @@ export class Basket {
         return this.getProduct(id, sku) !== undefined;
     }
 
-    decrementProduct() {
-        throw new Error("Unimplemented method.");
+    incrementProduct(id: number, sku: string): void {
+        const existingProduct = this.getProduct(id, sku);
+
+        if (undefined === existingProduct) {
+            return;
+        }
+
+        existingProduct.incrementQuantity();
+
+        this.setProduct(existingProduct);
     }
 
-    removeProduct() {
-        throw new Error("Unimplemented method.");
+    decrementProduct(id: number, sku: string): void {
+        const existingProduct = this.getProduct(id, sku);
+
+        if (undefined === existingProduct) {
+            return;
+        }
+
+        existingProduct.decrementQuantity();
+
+        if (0 === existingProduct.getQuantity()) {
+            this.removeProduct(id, sku);
+
+            return;
+        }
+
+        this.setProduct(existingProduct);
+    }
+
+    removeProduct(id: number, sku: string): void {
+        delete(this.products[id][sku]);
     }
 
     getSubTotal(): number

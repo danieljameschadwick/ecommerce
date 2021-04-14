@@ -1,5 +1,7 @@
+import { useDispatch } from "react-redux";
 import { MOCK_PRODUCT } from "../../enumeration/MockValues";
 import { formatCurrency } from "../../util/formatting/CurrencyFormatter";
+import { ACTION } from "../../util/state/Action";
 import { Product } from "../../util/state/Product";
 
 interface IProps {
@@ -7,6 +9,38 @@ interface IProps {
 };
 
 export const BasketItem: React.FC = ({product}: IProps) => {
+    const dispatch = useDispatch();
+
+    const increment = (id: number, sku: string): void => {
+        dispatch({
+            type: ACTION.INCREMENT_PRODUCT,
+            payload: {
+                id,
+                sku
+            },
+        });
+    };
+
+    const decrement = (id: number, sku: string): void => {
+        dispatch({
+            type: ACTION.DECREMENT_PRODUCT,
+            payload: {
+                id,
+                sku
+            },
+        });
+    };
+
+    const remove = (id: number, sku: string): void => {
+        dispatch({
+            type: ACTION.REMOVE_FROM_CART,
+            payload: {
+                id,
+                sku
+            },
+        });
+    };
+
     return (
         <div className={"w-full flex flex-row text-white-base mb-3"}>
             <div className={"max-w-100 sm:max-w-200 max-h-100 sm:max-h-200 mr-3"}>
@@ -46,8 +80,9 @@ export const BasketItem: React.FC = ({product}: IProps) => {
 
                 <div className={"w-full sm:w-1/4"}>
                     <div className={"flex flex-row h-10 max-w-150 rounded-lg relative bg-transparent my-1 sm:my-0"}>
-                        <button data-action="decrement"
+                        <button
                             className={"bg-theme-primary text-white-base hover:bg-theme-primarydark h-full w-20 rounded-l cursor-pointer outline-none"}
+                            onClick={() => decrement(product.id, product.getSku())}
                         >
                             <span className={"m-auto text-2xl font-thin"}>−</span>
                         </button>
@@ -62,15 +97,19 @@ export const BasketItem: React.FC = ({product}: IProps) => {
                             {product.getQuantity()}
                         </span>
                        
-                        <button data-action="increment" 
+                        <button 
                             className={"bg-theme-primary text-white-base hover:bg-theme-primarydark h-full w-20 rounded-r cursor-pointer outline-none"}
+                            onClick={() => increment(product.id, product.getSku())}
                         >
                             <span className={"m-auto text-2xl font-thin"}>+</span>
                         </button>
                     </div>
                 </div>
 
-                <div className={"sm:w-1/4 text-left sm:text-right absolute top-0 right-0 sm:relative"}>
+                <div 
+                    className={"sm:w-1/4 text-left sm:text-right absolute top-0 right-0 sm:relative"}
+                    onClick={() => remove(product.id, product.getSku())}
+                >
                     Remove
                 </div>
             </div>

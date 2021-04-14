@@ -59,24 +59,24 @@ export const BasketReducer = (state = initialState, action) => {
             };
 
         case ACTION.ADD_TO_CART:
-            console.log(ACTION.ADD_TO_CART);
-
             return {
                 ...state,
                 basket: addToCart(action.payload, state),
             };
         
-        case ACTION.DECREMENT_PRODUCT:
-            console.log(ACTION.REMOVE_FROM_CART);
+        case ACTION.INCREMENT_PRODUCT:
+            return {
+                ...state,
+                basket: incrementProduct(action.payload, state),
+            };
 
+        case ACTION.DECREMENT_PRODUCT:
             return {
                 ...state,
                 basket: decrementProduct(action.payload, state),
             };
 
         case ACTION.REMOVE_FROM_CART:
-            console.log(ACTION.REMOVE_FROM_CART);
-
             return {
                 ...state,
                 basket: removeProduct(action.payload, state),
@@ -116,11 +116,20 @@ const addToCart = (payload: any, state: { basket: Basket; }): Basket => {
     return basket;
 };
 
-const decrementProduct = (payload: any, state: { basket: Basket; }): Basket => {
-    const { sku } = payload;
+const incrementProduct = (payload: any, state: { basket: Basket; }): Basket => {
+    const { id, sku } = payload;
     const { basket } = state;
     
-    basket.decrementProduct(sku);
+    basket.incrementProduct(id, sku);
+
+    return basket;
+};
+
+const decrementProduct = (payload: any, state: { basket: Basket; }): Basket => {
+    const { id, sku } = payload;
+    const { basket } = state;
+    
+    basket.decrementProduct(id, sku);
 
     return basket;
 };
@@ -129,7 +138,7 @@ const removeProduct = (payload: any, state: { basket: Basket; }): Basket => {
     const { id, sku } = payload;
     const { basket } = state;
 
-    basket.removeProduct(sku);
+    basket.removeProduct(id, sku);
 
     return basket;
 };

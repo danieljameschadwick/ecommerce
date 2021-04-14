@@ -37,6 +37,16 @@ export class Product {
         return this.quantity;
     }
 
+    incrementQuantity(): void
+    {
+        this.quantity++;
+    }
+
+    decrementQuantity(): void
+    {
+        this.quantity--;
+    }
+
     getLinePrice(): number
     {
         return this.getQuantity() * this.getPrice();
