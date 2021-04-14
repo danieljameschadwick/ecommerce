@@ -11,6 +11,7 @@ const initialState = {
 
 interface AddToCartDTO {
     id: number;
+    price: number;
     quantity: number;
     attributes: AttributeHash[];
 };
@@ -58,24 +59,27 @@ export const BasketReducer = (state = initialState, action) => {
             };
 
         case ACTION.ADD_TO_CART:
-            let { id, price, quantity, attributes }: AddToCartDTO = action.payload;
-            let { basket } = state;
-            let attributeDTOs: AttributeDTO[] = [];
-
-            // todo: no unused vars on key
-            // eslint-disable-next-line
-            for (const [key, attribute] of Object.entries(attributes)) {
-                attributeDTOs.push(
-                    new Attribute(attribute.id, attribute.handle, attribute.value, attribute.name)
-                );
-            }
-
-            const product = new Product(id, price, quantity, attributeDTOs);
-            basket.addProduct(product);
+            console.log(ACTION.ADD_TO_CART);
 
             return {
                 ...state,
-                basket,
+                basket: addToCart(action.payload, state),
+            };
+        
+        case ACTION.DECREMENT_PRODUCT:
+            console.log(ACTION.REMOVE_FROM_CART);
+
+            return {
+                ...state,
+                basket: decrementProduct(action.payload, state),
+            };
+
+        case ACTION.REMOVE_FROM_CART:
+            console.log(ACTION.REMOVE_FROM_CART);
+
+            return {
+                ...state,
+                basket: removeProduct(action.payload, state),
             };
         
         case ACTION.UPDATE_DELIVERY:
@@ -91,4 +95,41 @@ export const BasketReducer = (state = initialState, action) => {
     }
 
     return state;
+};
+
+const addToCart = (payload: any, state: { basket: Basket; }): Basket => {
+    const { id, price, quantity, attributes }: AddToCartDTO = payload;
+    const { basket } = state;
+    const attributeDTOs: AttributeDTO[] = [];
+
+    // todo: no unused vars on key
+    // eslint-disable-next-line
+    for (const [key, attribute] of Object.entries(attributes)) {
+        attributeDTOs.push(
+            new Attribute(attribute.id, attribute.handle, attribute.value, attribute.name)
+        );
+    }
+
+    const product = new Product(id, price, quantity, attributeDTOs);
+    basket.addProduct(product);
+
+    return basket;
+};
+
+const decrementProduct = (payload: any, state: { basket: Basket; }): Basket => {
+    const { sku } = payload;
+    const { basket } = state;
+    
+    basket.decrementProduct(sku);
+
+    return basket;
+};
+
+const removeProduct = (payload: any, state: { basket: Basket; }): Basket => {
+    const { id, sku } = payload;
+    const { basket } = state;
+
+    basket.removeProduct(sku);
+
+    return basket;
 };

@@ -4,7 +4,7 @@ import { formatCurrency } from "../../util/formatting/CurrencyFormatter";
 const ProductCard = () => {
     return (
         <div className={"product-card"}>
-            <div className="relative overflow-hidden">
+            <div className={"product-image"}>
                 <div>
                     <a href={MOCK_PRODUCT.URL}>
                         <picture className={"w-full h-full max-h-400 flex"}>
@@ -15,7 +15,7 @@ const ProductCard = () => {
                     </a>
                 </div>
 
-                <div className={"absolute bottom-0 mb-2 ml-3 px-2 py-1 rounded text-sm bg-black-dark text-white-base"}>
+                <div className={"price-label"}>
                     {formatCurrency(MOCK_PRODUCT.PRICE)}
                 </div>
             </div>

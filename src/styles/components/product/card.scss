@@ -2,3 +2,13 @@
 {
     @apply h-400 flex flex-col relative mx-auto max-w-md overflow-hidden rounded border border-gray-medium shadow;
 }
+
+.product-image
+{
+    @apply relative overflow-hidden;
+
+    .price-label
+    {
+        @apply absolute bottom-0 mb-2 ml-3 px-2 py-1 rounded text-sm bg-black-dark text-white-base;
+    }
+}

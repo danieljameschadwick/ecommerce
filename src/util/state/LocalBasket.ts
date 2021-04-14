@@ -8,8 +8,6 @@ export class LocalBasket {
     constructor(products: Product[] = [], delivery?: Delivery) {
         this.products = products;
         this.delivery = delivery;
-
-console.log(this); // todo: debug
     }
 
     addProduct(product: Product): void {

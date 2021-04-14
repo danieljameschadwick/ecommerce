@@ -1,9 +1,10 @@
-import { SubmitButton } from "../util/buttons/SubmitButton";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { ACTION } from "../../util/state/Action";
 import { AttributeDTO } from "../../util/state/Attribute";
+import { Error } from "../util/form/Error";
+import { SubmitButton } from "../util/buttons/SubmitButton";
 
 const sizes = [
     {
@@ -79,16 +80,16 @@ export const ProductForm = () => {
                 addToCart(size);
             }}
         >
-            {({ errors, handleChange, touched }) => (
+            {({ handleChange }) => (
                 <Form>
                     <Field 
-                        name="size"
-                        type="input"
+                        name={"size"}
+                        type={"input"}
                         className={"hidden"}
                     />
 
                     <select
-                        name="size" 
+                        name={"size"}
                         className={"w-full mb-3"}
                         onChange={handleChange}
                         defaultValue=""
@@ -104,9 +105,7 @@ export const ProductForm = () => {
                         )}
                     </select>
 
-                    {errors.size && touched.size ? (
-                        <div>{errors.size}</div>
-                    ) : null}
+                    <Error field={"size"} />
 
                     <SubmitButton text={"Add to cart"} />
                 </Form>

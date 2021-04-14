@@ -87,6 +87,14 @@ export class Basket {
         return this.getProduct(id, sku) !== undefined;
     }
 
+    decrementProduct() {
+        throw new Error("Unimplemented method.");
+    }
+
+    removeProduct() {
+        throw new Error("Unimplemented method.");
+    }
+
     getSubTotal(): number
     {
         return this.subTotal;

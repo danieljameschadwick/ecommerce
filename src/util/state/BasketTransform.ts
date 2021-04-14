@@ -9,7 +9,8 @@ interface BasketState {
 const BasketTransform = createTransform(
     // transform state on its way to being serialized and persisted.
     (inboundState: BasketState, key) => {
-        const { basket } = inboundState;
+        const basket = inboundState?.basket;
+
         if (basket === undefined) {
             return {
                 ...inboundState
