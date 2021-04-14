@@ -86,12 +86,6 @@ export const BasketItem: React.FC = ({product}: IProps) => {
                         >
                             <span className={"m-auto text-2xl font-thin"}>−</span>
                         </button>
-                        
-                        {/* <input type="number"
-                            className={"outline-none focus:outline-none text-center w-full bg-theme-primary font-semibold text-md hover:text-black flex items-center text-white-base"}
-                            name={"custom-input-number"}
-                            defaultValue={product.getQuantity()}
-                        /> */}
 
                         <span className={"w-full outline-none text-center leading-10 focus:outline-none bg-theme-primary sm:font-semibold sm:text-md text-white-base"}>
                             {product.getQuantity()}
@@ -106,11 +100,10 @@ export const BasketItem: React.FC = ({product}: IProps) => {
                     </div>
                 </div>
 
-                <div 
-                    className={"sm:w-1/4 text-left sm:text-right absolute top-0 right-0 sm:relative"}
-                    onClick={() => remove(product.id, product.getSku())}
-                >
-                    Remove
+                <div className={"sm:w-1/4 text-left sm:text-right absolute top-0 right-0 sm:relative"}>
+                    <span onClick={() => remove(product.id, product.getSku())}>
+                        Remove
+                    </span>
                 </div>
             </div>
         </div>

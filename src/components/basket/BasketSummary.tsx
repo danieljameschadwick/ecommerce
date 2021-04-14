@@ -38,7 +38,7 @@ const BasketSummarySchema = Yup.object().shape({
         .required('Required'),
 });
 
-export const BasketSummary: React.FC = ({basket, additionalClassName}: IProps) => {
+export const BasketSummary: React.FC = ({ basket, className = "" }: IProps) => {
     const dispatch = useDispatch();
 
     const updateDelivery = (delivery: AttributeDTO): void => {
@@ -53,7 +53,7 @@ export const BasketSummary: React.FC = ({basket, additionalClassName}: IProps) =
     };
     
     return (
-        <div className={"basket--summary"}>
+        <div className={`basket--summary ${className}`}>
             <h3 className={"mb-2"}>
                 Summary
             </h3>
@@ -70,7 +70,7 @@ export const BasketSummary: React.FC = ({basket, additionalClassName}: IProps) =
 
                     <Formik 
                         initialValues={{
-                            delivery: "",
+                            delivery: JSON.stringify(delivery[0].value),
                         }}
                         validationSchema={BasketSummarySchema}
                         onSubmit={values => {
@@ -80,7 +80,7 @@ export const BasketSummary: React.FC = ({basket, additionalClassName}: IProps) =
                             submit();
                         }}
                     >
-                        {({ errors, handleChange, handleSubmit, touched }) => (
+                        {({ handleChange, handleSubmit }) => (
                             <Form>
                                 <Field 
                                     name="delivery"

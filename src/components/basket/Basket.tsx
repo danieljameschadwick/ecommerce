@@ -28,26 +28,24 @@ export const Basket: React.FC = () => {
     }
 
     return (
-        <div>
-            <div className={"basket--container"}>
-                <div className={"basket"}>
-                    <h1 className={"mb-3"}>
-                        Basket
-                    </h1>
-                    
-                    {products.map(product => {
-                        return (
-                            <BasketItem 
-                                key={product.getSku()}
-                                product={product}
-                            />
-                        );
-                    })}
-                </div>
+        <div className={"basket--container"}>
+            <div className={"basket"}>
+                <h1 className={"mb-3"}>
+                    Basket
+                </h1>
+                
+                {products.map(product => {
+                    return (
+                        <BasketItem 
+                            key={product.getSku()}
+                            product={product}
+                        />
+                    );
+                })}
+            </div>
 
-                <div className={"summary--container"}>
-                    <BasketSummary basket={basket} />
-                </div>
+            <div className={"summary--container"}>
+                <BasketSummary basket={basket} />
             </div>
         </div>
     )

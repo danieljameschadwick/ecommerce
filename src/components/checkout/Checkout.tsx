@@ -1,19 +1,14 @@
-import { useSelector } from "react-redux";
 import { formatCurrency } from "../../util/formatting/CurrencyFormatter";
+import { Basket } from "../../util/state/Basket";
 
-export const Checkout: React.FC = () => {
-    const basket: PersistedBasket = useSelector(state => state.basket.basket);
+interface IProps {
+    basket: Basket;
+    className?: string;
+};
 
-    if (undefined === basket) {
-        return (
-            <div>
-                No basket?
-            </div>
-        );
-    }
-
+export const Checkout: React.FC = ({ basket, className = "" }: IProps) => {
     return (
-        <div className={"flex flex-wrap text-white-base"}>
+        <div className={`flex flex-wrap text-white-base ${className}`}>
             <div className={"w-full"}>{formatCurrency(basket.getSubTotal())}</div>
             <div className={"w-full"}>{formatCurrency(basket.getDeliveryTotal())}</div>
             <div className={"w-full"}>{formatCurrency(basket.getTotal())}</div>

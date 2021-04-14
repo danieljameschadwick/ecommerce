@@ -18,6 +18,16 @@ export class Product {
         this.quantity += quantity;
     }
 
+    increment(): void
+    {
+        this.quantity++;
+    }
+
+    decrement(): void
+    {
+        this.quantity--;
+    }
+
     getSku(): string
     {
         const sku = this.attributes.map((attribute) => {
@@ -35,16 +45,6 @@ export class Product {
     getQuantity(): number
     {
         return this.quantity;
-    }
-
-    incrementQuantity(): void
-    {
-        this.quantity++;
-    }
-
-    decrementQuantity(): void
-    {
-        this.quantity--;
     }
 
     getLinePrice(): number

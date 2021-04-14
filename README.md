@@ -5,9 +5,9 @@ Written in React, NextJS, TypeScript accompanied by Tailwind.
 ## Todo
 
 - Backend (Products, Authentication, Checkout)
-- Rename core files (Basket naming schema (esp now with ./pages))
-- Rethink hashed array for Products (keep having to normalise and loop through)
-- Core library (currentFormatter)
+- Rename core files (Basket naming schema (especially now with ./pages))
+- Refactor Basket/Checkout components (Item and Summary)
+- Core library (currencyFormatter)
 - Fix VSCode File Formatter (tab inconsistencies)
 
 ## Startup
