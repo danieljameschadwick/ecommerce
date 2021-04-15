@@ -95,6 +95,7 @@ module.exports = {
             zIndex: {
                 base: 0,
                 content: 5,
+                over: 10,
                 overlay: 100,
                 absolute: 1000,
             }

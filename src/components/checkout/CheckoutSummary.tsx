@@ -49,6 +49,10 @@ export const CheckoutSummary: React.FC = ({ basket, className = "" }: IProps) =>
                 <span className={"mb-2"}>
                     <label className={"inline-block font-semibold"}>Delivery:</label> {formatCurrency(basket.getDeliveryTotal())}
                 </span>
+
+                <span>
+                    <label className={"inline-block font-semibold"}>Total:</label> {formatCurrency(basket.getTotal())}
+                </span>
             </div>
 
             <div className={"flex justify-center space-x-2"}>

@@ -1,11 +1,21 @@
 .form-group
 {
-    @apply text-black-base dark:text-white-base mb-3;
+    @apply relative text-black-base dark:text-white-base h-12 mb-3;
+
+    label
+    {
+        @apply absolute h-6 z-over text-gray-dark text-xs left-2 top-1;
+    }
+
+    .input
+    {
+        @apply absolute w-full px-2 pt-3 h-12 rounded-md shadow-sm focus:ring-theme-primary focus:border-theme-primary sm:text-sm;
+    }
 }
 
 .form-row
 {
-    @apply w-full flex mb-1;
+    @apply w-full mb-1;
 }
 
 label

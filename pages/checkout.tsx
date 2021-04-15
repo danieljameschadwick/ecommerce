@@ -14,18 +14,14 @@ const CheckoutPage: React.FC = () => {
                 <title>{siteTitle}</title>
             </Head>
 
-            <div className={"container"}>
-                <h1>Checkout</h1>
-            </div>
-
-            <div className={"container container--checkout grid grid-cols-5 gap-x-10 gap-y-4"}>
-                <div className={"container--details col-span-5 md:col-span-3"}>
+            <div className={"container container--checkout grid md:grid-cols-5 lg:grid-cols-10 gap-x-10 gap-y-4"}>
+                <div className={"container--details col-span-5 md:col-span-3 lg:col-span-7"}>
                     <Checkout
                         basket={basket}
                     />
                 </div>
 
-                <div className={"container-summary col-span-5 md:col-span-2"}>
+                <div className={"container-summary col-span-5 md:col-span-2 lg:col-span-3"}>
                     <CheckoutSummary
                         basket={basket}
                     />
