@@ -11,6 +11,19 @@
     {
         @apply absolute w-full px-2 pt-3 h-12 rounded-md shadow-sm focus:ring-theme-primary focus:border-theme-primary sm:text-sm;
     }
+
+    &.active
+    {
+        label
+        {
+            @apply text-gray-medium;
+        }
+
+        .input
+        {
+            @apply outline-none ring border-theme-primary;
+        }
+    }
 }
 
 .form-row
@@ -25,7 +38,7 @@ label
 
 .input
 {
-    @apply text-black-base;
+    @apply text-black-base;    
 }
 
 select
