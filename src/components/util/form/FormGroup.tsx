@@ -1,28 +1,37 @@
 import { Field } from "formik";
 import { useComponentVisible } from "../../../util/ui/UseComponentVisible";
+import { Error } from "./Error";
 
 interface IProps {
     name: string;
     label: string;
-    placeholder: string;
+    input: string;
+    required: boolean;
+    placeholder?: string;
+    children?: React.FC[]
 };
 
-export const FormGroup: React.FC = ({name, label, placeholder}): IProps => {
+export const FormGroup: React.FC = ({name, label, input = "input", required = true, placeholder = undefined, children = undefined}): IProps => {
     const { ref, setIsComponentVisible, isComponentVisible } = useComponentVisible(false);
 
     return (
         <div className={`form-group ${isComponentVisible ? 'active' : ''}`} ref={ref}>
             <label>
-                {label}:
+                {label}{required ? '*' : ''}:
             </label>
 
-            <Field 
+            <Field
                 name={name}
-                type={"input"}
+                as={input}
+                type={input}
                 className={"input"}
                 placeholder={placeholder}
                 onClick={() => setIsComponentVisible(true)}
-            />
+            >
+                {children}
+            </Field>
+
+            <Error field={name} />
         </div>
     );
 };

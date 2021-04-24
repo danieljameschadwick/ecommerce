@@ -42,16 +42,16 @@ export const CheckoutSummary: React.FC = ({ basket, className = "" }: IProps) =>
             <hr className={"mb-3"} />
 
             <div className={"flex flex-col mb-4"}>
-                <span className={"mb-2"}>
-                    <label className={"inline-block font-semibold"}>Sub Total:</label> {formatCurrency(basket.getSubTotal())}
+                <span className={"flex mb-2"}>
+                    <label className={"flex-1 font-semibold"}>Sub Total:</label> {formatCurrency(basket.getSubTotal())}
                 </span>
 
-                <span className={"mb-2"}>
-                    <label className={"inline-block font-semibold"}>Delivery:</label> {formatCurrency(basket.getDeliveryTotal())}
+                <span className={"flex mb-2"}>
+                    <label className={"flex-1 font-semibold"}>Delivery:</label> {formatCurrency(basket.getDeliveryTotal())}
                 </span>
 
-                <span>
-                    <label className={"inline-block font-semibold"}>Total:</label> {formatCurrency(basket.getTotal())}
+                <span className={"flex"}>
+                    <label className={"flex-1 font-semibold"}>Total:</label> {formatCurrency(basket.getTotal())}
                 </span>
             </div>
 

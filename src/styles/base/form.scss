@@ -9,19 +9,24 @@
 
     .input
     {
-        @apply absolute w-full px-2 pt-3 h-12 rounded-md shadow-sm focus:ring-theme-primary focus:border-theme-primary sm:text-sm;
+        @apply absolute w-full px-2 pt-3 h-12 rounded-md shadow-sm outline-none sm:text-sm;
+    }
+
+    select.input
+    {
+        @apply px-1 pt-5;
     }
 
     &.active
     {
         label
         {
-            @apply text-gray-medium;
+            @apply text-black-base transition duration-300 ease-in-out;
         }
 
         .input
         {
-            @apply outline-none ring border-theme-primary;
+            @apply outline-none ring ring-theme-primary transition duration-300 ease-in-out;
         }
     }
 }

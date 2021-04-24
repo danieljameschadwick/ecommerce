@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { FeatureSwitcher } from "../../util/core/FeatureSwitcher";
+import { FEATURE } from "../../util/core/Feature";
 
 const Userbar = () => {
     return (
@@ -7,9 +9,12 @@ const Userbar = () => {
                 <div className={"navbar-brand"}></div>
 
                 <div className={"navbar-end"}>
-                    <Link href={"/login"}>
-                        <a>Login</a>
-                    </Link>
+                    {FeatureSwitcher.isEnabled(FEATURE.LOGIN) ?
+                        <Link href={"/login"}>
+                            <a>Login</a>
+                        </Link>
+                    : ''}
+
                 </div>
             </div>
         </div>

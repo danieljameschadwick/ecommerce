@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import Layout, { siteTitle } from "../src/components/layout/Layout";
 import { Basket } from "../src/components/basket/Basket";
 

@@ -55,9 +55,6 @@ module.exports = {
             width: {
                 300: "300px",
             },
-            outline: {
-                primary: "2px solid #3C8FCE",
-            },
             screens: {
                 xs: "420px",
                 lg: "1100px",
