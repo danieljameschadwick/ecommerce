@@ -11,25 +11,35 @@ interface IProps {
     children?: React.FC[]
 };
 
-export const FormGroup: React.FC = ({name, label, input = "input", required = true, placeholder = undefined, children = undefined}): IProps => {
+export const FormGroup: React.FC = ({
+    name,
+    label,
+    input = "input",
+    required = true,
+    placeholder = undefined,
+    children = undefined,
+    className = undefined,
+}: IProps) => {
     const { ref, setIsComponentVisible, isComponentVisible } = useComponentVisible(false);
 
     return (
-        <div className={`form-group ${isComponentVisible ? 'active' : ''}`} ref={ref}>
-            <label>
-                {label}{required ? '*' : ''}:
-            </label>
+        <div className={`form-group flex flex-wrap ${isComponentVisible ? 'active' : ''} ${className ?? ""}`} ref={ref}>
+            <div className={"input-group w-full"}>
+                <label>
+                    {label}{required ? '*' : ''}:
+                </label>
 
-            <Field
-                name={name}
-                as={input}
-                type={input}
-                className={"input"}
-                placeholder={placeholder}
-                onClick={() => setIsComponentVisible(true)}
-            >
-                {children}
-            </Field>
+                <Field
+                    name={name}
+                    as={input}
+                    type={input}
+                    className={"input"}
+                    placeholder={placeholder}
+                    onClick={() => setIsComponentVisible(true)}
+                >
+                    {children}
+                </Field>
+            </div>
 
             <Error field={name} />
         </div>

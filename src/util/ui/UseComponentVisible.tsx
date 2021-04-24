@@ -4,7 +4,7 @@ interface IProps {
     initialIsVisible: boolean;
 };
 
-export const useComponentVisible = ({initialIsVisible}): IProps => {
+export const useComponentVisible = ({initialIsVisible}: IProps) => {
     const [isComponentVisible, setIsComponentVisible] = useState<boolean>(initialIsVisible);
     const ref = useRef<HTMLDivElement>(null);
 

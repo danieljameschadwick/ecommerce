@@ -1,6 +1,11 @@
 .form-group
 {
-    @apply relative text-black-base dark:text-white-base h-12 mb-3;
+    @apply relative block text-black-base dark:text-white-base mb-3;
+
+    .input-group
+    {
+        @apply relative h-12;
+    }
 
     label
     {
@@ -9,7 +14,7 @@
 
     .input
     {
-        @apply absolute w-full px-2 pt-3 h-12 rounded-md shadow-sm outline-none sm:text-sm;
+        @apply absolute w-full h-12 px-2 pt-3 rounded-md shadow-sm outline-none sm:text-sm;
     }
 
     select.input
@@ -43,7 +48,7 @@ label
 
 .input
 {
-    @apply text-black-base;    
+    @apply text-black-base;
 }
 
 select

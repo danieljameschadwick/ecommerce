@@ -2,15 +2,6 @@ import * as Yup from "yup";
 import { Button } from "../util/buttons/Button";
 import { FormGroup } from "../util/form/FormGroup";
 
-export const AddressDetailsSchema = Yup.object().shape({
-    property: Yup.string().required("Required"),
-    addressLine1: Yup.string().required("Required"),
-    addressLine2: Yup.string().required("Required"),
-    county: Yup.string().required("Required"),
-    postCode: Yup.string().required("Required"),
-    country: Yup.string().required("Required"),
-});
-
 export const ADDRESS_TYPE = {
     "SHIPPING": "SHIPPING",
     "INVOICE": "INVOICE"
@@ -18,19 +9,29 @@ export const ADDRESS_TYPE = {
 
 const ADDRESS_HEADER = {
     [ADDRESS_TYPE.SHIPPING]: "Shipping",
-    [ADDRESS_TYPE.INVOICE]: "Invoice"
+    [ADDRESS_TYPE.INVOICE]: "Invoice",
+};
+
+const ADDRESS_FORM = {
+    [ADDRESS_TYPE.SHIPPING]: "shippingAddress",
+    [ADDRESS_TYPE.INVOICE]: "invoiceAddress",
 };
 
 interface IProps {
     handle: string;
+    slim: boolean;
 };
 
-export const AddressDetails: React.FC = ({ handle }): IProps => {
+export const AddressDetails: React.FC = ({ handle, slim = false }: IProps) => {
     if (undefined === ADDRESS_TYPE[handle]) {
         throw new Error(`Invalid Address Type [${handle}].`);
     }
 
     const heading = ADDRESS_HEADER[handle];
+
+    const withNamespace = (fieldName: string) => { // todo: move to a NestedType (?)
+        return ADDRESS_FORM[handle] ? `${ADDRESS_FORM[handle]}.${fieldName}` : fieldName;
+    };
 
     return (
         <>
@@ -39,33 +40,34 @@ export const AddressDetails: React.FC = ({ handle }): IProps => {
             </h2>
 
             <FormGroup
-                name={"property"}
+                name={withNamespace("property")}
                 label={"Property/house number"}
                 placeholder={"House/flat number"}
             />
 
             <FormGroup
-                name={"addressLine1"}
+                name={withNamespace("addressLine1")}
                 label={"Address Line 1"}
                 placeholder={"Street/road"}
             />
 
             <FormGroup
-                name={"addressLine2"}
+                name={withNamespace("addressLine2")}
                 label={"Address Line 2"}
                 required={false}
             />
 
             <FormGroup
-                name={"county"}
+                name={withNamespace("county")}
                 label={"County"}
             />
 
-            <div className={"form-row grid grid-cols-3 gap-x-4"}>
+            <div className={`form-row grid gap-x-4 ${slim ? "grid-cols-2" : "grid-cols-3 "}`}>
                 <FormGroup
-                    name={"country"}
+                    name={withNamespace("country")}
                     label={"Country"}
                     input={"select"}
+                    className={slim ? "col-span-2" : ""}
                     children={
                         <>
                             <option value={"GB"}>United Kingdom</option>
@@ -75,11 +77,11 @@ export const AddressDetails: React.FC = ({ handle }): IProps => {
                 />
 
                 <FormGroup
-                    name={"postCode"}
+                    name={withNamespace("postCode")}
                     label={"Post code"}
                 />
 
-                <Button text={"Find Address"} />
+                <Button text={"Find Address"} additionalClassname={"text-sm"} />
             </div>
         </>
     );
