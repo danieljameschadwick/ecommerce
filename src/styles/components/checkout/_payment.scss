@@ -1,0 +1,32 @@
+.payment-options
+{
+    .payment-option
+    {
+        @apply flex flex-col p-4 items-center max-w-300 bg-black-dark;
+
+        @media screen and (max-width: 952px)
+        {
+            @apply max-w-full w-1/2;
+        }
+
+        @media screen and (max-width: 512px)
+        {
+            @apply w-full;
+        }
+
+        .media
+        {
+            @apply w-16 fill-current text-white-base;
+        }
+
+        &:hover
+        {
+            @apply text-black-base bg-theme-primary;
+
+            .media
+            {
+                @apply text-black-base;
+            }
+        }
+    }
+}

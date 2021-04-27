@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card } from "./Card";
+import { ReactSVG } from "react-svg";
 
 const CREDIT_DEBIT = "CREDIT_DEBIT";
 
@@ -11,9 +12,16 @@ export const PaymentDetails: React.FC = () => {
             <div className="mb-3">
                 <h2 className={"mb-3"}>Payment details</h2>
 
-                <span onClick={() => setPayment(CREDIT_DEBIT)}>
-                    Credit/Debit
-                </span>
+                <div className="payment-options">
+                    <div className={"payment-option"} onClick={() => setPayment(CREDIT_DEBIT)}>
+                        <ReactSVG
+                            src="www/images/payment/credit_card.svg"
+                            className={"media"}
+                        />
+
+                        Credit/Debit
+                    </div>
+                </div>
             </div>
         );
     }

@@ -1,25 +1,31 @@
+import { Field } from "formik";
+
 export const Card: React.FC = () => {
+    const withNamespace = (fieldName: string) => { // todo: move to a NestedType (?)
+        return `paymentDetails.creditCard.${fieldName}`;
+    };
+
     return (
-        <div className="flex">
-            <input
-                type="text"
-                id="payment"
-                className="w-5/6 flex-1 text-sm text-black-base rounded-l p-3 focus:outline-none"
-                placeholder="Card Number"
+        <div className="flex flex-wrap sm:flex-nowrap">
+            <Field
+                name={withNamespace("cardNumber")}
+                type={"input"}
+                className={"w-full sm:w-5/6 sm:flex-1 text-sm text-black-base rounded sm:rounded-l sm:rounded-none p-3 focus:outline-none mb-2 sm:mb-0"}
+                placeholder={"Card Number"}
             />
 
-            <input
-                type="text"
-                id="payment"
-                className="w-1/6 inline-block text-sm text-black-base p-3 focus:outline-none"
-                placeholder="MM / YY"
+            <Field
+                name={withNamespace("expiryDate")}
+                type={"input"}
+                className="w-1/3 sm:w-1/6 text-sm text-black-base rounded-l sm:rounded-none p-3 focus:outline-none"
+                placeholder={"MM / YY"}
             />
 
-            <input
-                type="text"
-                id="payment"
-                className="w-1/6 inline-block text-sm text-black-base rounded-r p-3 focus:outline-none"
-                placeholder="CVC"
+            <Field
+                name={withNamespace("securityCode")}
+                type={"input"}
+                className={"w-1/3 sm:w-1/6 text-sm text-black-base rounded-r p-3 focus:outline-none"}
+                placeholder={"CVC"}
             />
         </div>
     );

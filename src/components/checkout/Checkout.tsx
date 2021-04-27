@@ -20,6 +20,16 @@ const CheckoutSchema = Yup.object().shape({
         country: Yup.string().required("Required"),
         postCode: Yup.string().required("Required"),
     }),
+    paymentDetails: Yup.object().required().shape({
+        creditCard: Yup.object().required().shape({
+            cardNumber: Yup.string().required("Required"),
+            expiryDate: Yup.string().required("Required"),
+            securityCode: Yup.string().required("Required"),
+        }),
+    }),
+});
+
+const InvoiceAddressSchema = Yup.object().shape({
     invoiceAddress: Yup.object().optional().shape({
         property: Yup.string().required("Required"),
         addressLine1: Yup.string().required("Required"),
@@ -36,6 +46,29 @@ interface IProps {
 
 export const Checkout: React.FC = ({ className = undefined }: IProps) => {
     const [ invoiceAddress, setInvoiceAddress ] = useState<boolean>(false);
+    const initialValues = {
+        contactDetails: {
+            firstName: "",
+            lastName: "",
+            email: "",
+        },
+        shippingAddress: {
+            property: "",
+            addressLine1: "",
+            addressLine2: "",
+            country: "United Kingdom",
+            postCode: "",
+            county: "",
+        },
+        invoiceAddress: undefined,
+        paymentDetails: {
+            creditCard: {
+                cardNumber: "",
+                expiryDate: "",
+                securityCode: "",
+            },
+        },
+    };
 
     const updateInvoiceAddress = (value: boolean): void => {
         if (!value) {
@@ -46,6 +79,19 @@ export const Checkout: React.FC = ({ className = undefined }: IProps) => {
         setInvoiceAddress(value);
     };
 
+    if (invoiceAddress) {
+        CheckoutSchema.concat(InvoiceAddressSchema);
+
+        initialValues.invoiceAddress = {
+            property: "",
+            addressLine1: "",
+            addressLine2: "",
+            country: "United Kingdom",
+            postCode: "",
+            county: "",
+        };
+    }
+
     return (
         <div className={`flex flex-col text-white-base ${className}`}>
             <h1 className={"mb-2"}>
@@ -53,29 +99,7 @@ export const Checkout: React.FC = ({ className = undefined }: IProps) => {
             </h1>
 
             <Formik
-                initialValues={{
-                    contactDetails: {
-                        firstName: "",
-                        lastName: "",
-                        email: "",
-                    },
-                    shippingAddress: {
-                        property: "",
-                        addressLine1: "",
-                        addressLine2: "",
-                        country: "United Kingdom",
-                        postCode: "",
-                        county: "",
-                    },
-                    invoiceAddress: {
-                        property: "",
-                        addressLine1: "",
-                        addressLine2: "",
-                        country: "United Kingdom",
-                        postCode: "",
-                        county: "",
-                    },
-                }}
+                initialValues={initialValues}
                 validationSchema={CheckoutSchema}
                 onSubmit={values => {
                     console.log(values);
@@ -83,18 +107,10 @@ export const Checkout: React.FC = ({ className = undefined }: IProps) => {
             >
                 {(formik, handleSubmit, errors) => (
                     <Form>
-                        <div>{undefined !== errors ? errors.map(error => {
-                            return (
-                                <div>
-                                    {error}
-                                </div>
-                            )
-                        }): ''}</div>
-
                         <ContactDetails />
 
-                        <div className={"flex"}>
-                            <div className={invoiceAddress ? "w-1/2 mr-2" : "w-full"}>
+                        <div className={`address-container ${invoiceAddress ? "split" : ""}`}>
+                            <div className={"shipping-address"}>
                                 <AddressDetails
                                     handle={ADDRESS_TYPE.SHIPPING}
                                     slim={invoiceAddress}
@@ -102,19 +118,23 @@ export const Checkout: React.FC = ({ className = undefined }: IProps) => {
                             </div>
 
                             {invoiceAddress ? (
-                                <div className={"w-1/2 ml-2"}>
+                                <div className={"invoice-address"}>
                                     <AddressDetails handle={ADDRESS_TYPE.INVOICE} slim={true} />
                                 </div>
                             ) : ""}
                         </div>
 
                         {!invoiceAddress ? (
-                            <div className={"mb-4 text-xs"} onClick={() => updateInvoiceAddress(true)}>
-                                <span className={"link link--primary hover"}>Enter separate invoice address</span>
+                            <div className={"mb-4 text-xs"}>
+                                <span className={"link link--primary hover"} onClick={() => updateInvoiceAddress(true)}>
+                                    Enter separate invoice address
+                                </span>
                             </div>
                         ) : (
-                            <div className={"mb-4 text-xs"} onClick={() => updateInvoiceAddress(false)}>
-                                <span className={"link link--primary hover"}>Make shipping and invoice identical</span>
+                            <div className={"mb-4 text-xs"}>
+                                <span className={"link link--primary hover"} onClick={() => updateInvoiceAddress(false)}>
+                                    Make shipping and invoice identical
+                                </span>
                             </div>
                         )}
 

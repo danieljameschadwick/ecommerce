@@ -1,0 +1,52 @@
+.address-container
+{
+    @apply flex;
+}
+
+.shipping-address,
+.invoice-address
+{
+    @apply w-full;
+}
+
+.split
+{
+    @media screen and (min-width: 513px)
+    {
+        .shipping-address
+        {
+            @apply mr-2;
+        }
+
+        .invoice-address
+        {
+            @apply ml-2;
+        }
+
+        .button
+        {
+            @apply col-span-2;
+        }
+    }
+
+    @media screen and (max-width: 512px)
+    {
+        @apply flex-wrap;
+
+        .shipping-address,
+        .invoice-address
+        {
+            @apply w-full;
+        }
+
+        .shipping-address
+        {
+            @apply mb-2;
+        }
+
+        .button
+        {
+            @apply col-span-1;
+        }
+    }
+}

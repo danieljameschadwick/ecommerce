@@ -62,12 +62,11 @@ export const AddressDetails: React.FC = ({ handle, slim = false }: IProps) => {
                 label={"County"}
             />
 
-            <div className={`form-row grid gap-x-4 ${slim ? "grid-cols-2" : "grid-cols-3 "}`}>
+            <div className={`form-row collapsible-row ${slim ? "slim" : ""}`}>
                 <FormGroup
                     name={withNamespace("country")}
                     label={"Country"}
                     input={"select"}
-                    className={slim ? "col-span-2" : ""}
                     children={
                         <>
                             <option value={"GB"}>United Kingdom</option>
@@ -81,7 +80,7 @@ export const AddressDetails: React.FC = ({ handle, slim = false }: IProps) => {
                     label={"Post code"}
                 />
 
-                <Button text={"Find Address"} additionalClassname={"text-sm"} />
+                <Button text={"Find Address"} additionalClassname={"text-sm sm:col-span-3"} />
             </div>
         </>
     );
