@@ -1,29 +1,28 @@
-import * as Yup from "yup";
 import { Button } from "../util/buttons/Button";
 import { FormGroup } from "../util/form/FormGroup";
 
-export const ADDRESS_TYPE = {
-    "SHIPPING": "SHIPPING",
-    "INVOICE": "INVOICE"
-};
+export enum AddressType {
+    SHIPPING = "SHIPPING",
+    INVOICE = "INVOICE",
+}
 
 const ADDRESS_HEADER = {
-    [ADDRESS_TYPE.SHIPPING]: "Shipping",
-    [ADDRESS_TYPE.INVOICE]: "Invoice",
+    [AddressType.SHIPPING]: "Shipping",
+    [AddressType.INVOICE]: "Invoice",
 };
 
 const ADDRESS_FORM = {
-    [ADDRESS_TYPE.SHIPPING]: "shippingAddress",
-    [ADDRESS_TYPE.INVOICE]: "invoiceAddress",
+    [AddressType.SHIPPING]: "shippingAddress",
+    [AddressType.INVOICE]: "invoiceAddress",
 };
 
 interface IProps {
     handle: string;
     slim: boolean;
-};
+}
 
 export const AddressDetails: React.FC = ({ handle, slim = false }: IProps) => {
-    if (undefined === ADDRESS_TYPE[handle]) {
+    if (undefined === AddressType[handle]) {
         throw new Error(`Invalid Address Type [${handle}].`);
     }
 

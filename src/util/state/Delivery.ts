@@ -11,4 +11,4 @@ export class Delivery {
     {
         return this.value;
     }
-};
+}

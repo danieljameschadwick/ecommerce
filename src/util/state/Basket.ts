@@ -1,14 +1,15 @@
 import { Product } from "./Product";
 import { LocalBasket } from "./LocalBasket";
 import { Delivery } from "./Delivery";
+import { AttributeDTO } from "./Attribute";
 
 interface Products {
     [id: number]: ProductSizes;
-};
+}
 
 interface ProductSizes {
     [sku: string]: Product;
-};
+}
 
 export class Basket {
     subTotal: number;
@@ -23,7 +24,7 @@ export class Basket {
         this.products = products;
     }
 
-    static createFromStorage(localBasket: LocalBasket) {
+    createFromStorage(localBasket: LocalBasket) {
         this.subTotal = 0;
         this.delivery = undefined;
         this.total = 0;
@@ -86,7 +87,7 @@ export class Basket {
             return;
         }
 
-        existingProduct.incrementQuantity();
+        existingProduct.increment();
 
         this.setProduct(existingProduct);
     }
@@ -98,7 +99,7 @@ export class Basket {
             return;
         }
 
-        existingProduct.decrementQuantity();
+        existingProduct.decrement();
 
         if (0 === existingProduct.getQuantity()) {
             this.removeProduct(id, sku);
@@ -131,4 +132,4 @@ export class Basket {
     {
         return this.getSubTotal() + this.getDeliveryTotal();
     }
-};
+}

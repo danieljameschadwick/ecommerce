@@ -14,11 +14,11 @@ interface AddToCartDTO {
     price: number;
     quantity: number;
     attributes: AttributeHash[];
-};
+}
 
 interface AttributeHash {
     [size: string]: AttributeDTO;
-};
+}
 
 export const BasketReducer = (state = initialState, action) => {
     switch (action.type) {

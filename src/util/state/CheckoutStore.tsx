@@ -2,7 +2,6 @@ import { createStore, combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import { createWrapper } from "next-redux-wrapper";
 import { CheckoutReducer } from "./CheckoutReducer";
-import { BasketReducer } from "./BasketReducer";
 
 const persistConfig = {
     key: "checkout",
@@ -10,12 +9,11 @@ const persistConfig = {
 };
 
 const Reducer = combineReducers({
-    basket: BasketReducer,
     checkout: CheckoutReducer,
 });
 
-const Store = () => {
-    if (typeof window === 'undefined') {
+const CheckoutStore = () => {
+    if (typeof window === "undefined") {
         return createStore(Reducer);
     }
 
@@ -29,9 +27,9 @@ const Store = () => {
     return store;
 };
 
-const Wrapper = createWrapper(Store);
+const Wrapper = createWrapper(CheckoutStore);
 
 export {
     Wrapper,
-    Store,
+    CheckoutStore,
 };

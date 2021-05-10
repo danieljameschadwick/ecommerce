@@ -6,7 +6,7 @@ import { Product } from "../../util/state/Product";
 
 interface IProps {
     product: Product;
-};
+}
 
 export const BasketItem: React.FC = ({product}: IProps) => {
     const dispatch = useDispatch();

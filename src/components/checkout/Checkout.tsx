@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { SubmitButton } from "../util/buttons/SubmitButton";
 import { ContactDetails } from "./ContactDetails";
-import { ADDRESS_TYPE, AddressDetails } from "./AddressDetails";
+import { AddressType, AddressDetails } from "./AddressDetails";
 import { PaymentDetails } from "./PaymentDetails";
+import { ACTION } from "../../util/state/Action";
 
 const CheckoutSchema = Yup.object().shape({
     contactDetails: Yup.object().required().shape({
@@ -42,10 +44,12 @@ const InvoiceAddressSchema = Yup.object().shape({
 
 interface IProps {
     className?: string;
-};
+}
 
 export const Checkout: React.FC = ({ className = undefined }: IProps) => {
     const [ invoiceAddress, setInvoiceAddress ] = useState<boolean>(false);
+    const dispatch = useDispatch();
+
     const initialValues = {
         contactDetails: {
             firstName: "",
@@ -103,6 +107,11 @@ export const Checkout: React.FC = ({ className = undefined }: IProps) => {
                 validationSchema={CheckoutSchema}
                 onSubmit={values => {
                     console.log(values);
+
+                    dispatch({
+                        type: ACTION.UPDATE_CHECKOUT,
+                        payload: values
+                    })
                 }}
             >
                 {(formik, handleSubmit, errors) => (
@@ -112,14 +121,14 @@ export const Checkout: React.FC = ({ className = undefined }: IProps) => {
                         <div className={`address-container ${invoiceAddress ? "split" : ""}`}>
                             <div className={"shipping-address"}>
                                 <AddressDetails
-                                    handle={ADDRESS_TYPE.SHIPPING}
+                                    handle={AddressType.SHIPPING}
                                     slim={invoiceAddress}
                                 />
                             </div>
 
                             {invoiceAddress ? (
                                 <div className={"invoice-address"}>
-                                    <AddressDetails handle={ADDRESS_TYPE.INVOICE} slim={true} />
+                                    <AddressDetails handle={AddressType.INVOICE} slim={true} />
                                 </div>
                             ) : ""}
                         </div>

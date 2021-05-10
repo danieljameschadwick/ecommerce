@@ -1,20 +1,20 @@
 import { createStore, combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import { createWrapper } from "next-redux-wrapper";
-import { CheckoutReducer } from "./CheckoutReducer";
 import { BasketReducer } from "./BasketReducer";
+import BasketTransform from "./BasketTransform";
 
 const persistConfig = {
-    key: "checkout",
+    key: "basket",
     storage: storage,
+    transforms: [BasketTransform],
 };
 
 const Reducer = combineReducers({
     basket: BasketReducer,
-    checkout: CheckoutReducer,
 });
 
-const Store = () => {
+const BasketStore = () => {
     if (typeof window === 'undefined') {
         return createStore(Reducer);
     }
@@ -29,9 +29,9 @@ const Store = () => {
     return store;
 };
 
-const Wrapper = createWrapper(Store);
+const Wrapper = createWrapper(BasketStore);
 
 export {
     Wrapper,
-    Store,
+    BasketStore,
 };

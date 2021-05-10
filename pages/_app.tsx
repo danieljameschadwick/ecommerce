@@ -1,6 +1,6 @@
 import { useStore } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { Wrapper } from "../src/util/state/Store";
+import { Wrapper } from "../src/util/state/BasketStore";
 import "../src/styles/base/_base.scss";
 
 const App = ({ Component, pageProps }) => {
